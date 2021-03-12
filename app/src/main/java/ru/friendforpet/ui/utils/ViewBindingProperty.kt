@@ -1,6 +1,6 @@
 @file:Suppress("RedundantVisibilityModifier")
 
-package ru.spb.yakovlev.movieapp2020.utils.viewbindingdelegate
+package ru.friendforpet.ui.utils
 
 import android.os.Handler
 import android.os.Looper
