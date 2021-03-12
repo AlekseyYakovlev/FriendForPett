@@ -3,10 +3,8 @@ package ru.friendforpet.ui.pets_list
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
-import ru.friendforpet.data.db.entities.PetEntity
 import ru.friendforpet.data.repositoies.PetsListRepo
 import ru.friendforpet.model.Pet
-import ru.friendforpet.ui.pets_details.PetsItemData
 import javax.inject.Inject
 
 @HiltViewModel

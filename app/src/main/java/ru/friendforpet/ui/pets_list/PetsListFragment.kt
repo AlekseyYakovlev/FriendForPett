@@ -8,12 +8,13 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import ru.friendforpet.Navigator
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetItemBinding
 import ru.friendforpet.databinding.FragmentPetsListBinding
 import ru.friendforpet.ui.base.BaseRVAdapter
-import ru.friendforpet.ui.pets_details.PetsItemData
 import ru.friendforpet.ui.utils.viewBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
@@ -21,6 +22,8 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
     private val vb by viewBinding(FragmentPetsListBinding::bind)
     private val petsListRvAdapter by lazy(::setupRecyclerViewAdapter)
 
+    @Inject
+    lateinit var navigator: Navigator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +58,10 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                     tvGender.text = itemData.sex
 
                     root.setOnClickListener {
-
+                        navigator.navigateTo(
+                            Navigator.Destination.PETS_DETAILS_FRAGMENT,
+                            itemData._id
+                        )
                     }
                 }
             },

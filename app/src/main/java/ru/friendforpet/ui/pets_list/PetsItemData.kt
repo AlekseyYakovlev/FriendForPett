@@ -1,4 +1,4 @@
-package ru.friendforpet.ui.pets_details
+package ru.friendforpet.ui.pets_list
 
 import ru.friendforpet.ui.base.RvItemData
 
