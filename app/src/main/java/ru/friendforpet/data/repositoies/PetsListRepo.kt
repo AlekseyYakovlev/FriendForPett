@@ -3,7 +3,7 @@ package ru.friendforpet.data.repositoies
 import ru.friendforpet.model.Pet
 
 class PetsListRepo {
-    fun petListRepoMog(): Pet = Pet(
+    fun petListRepoMock(): Pet = Pet(
         141983,
         "Мухтар",
         "Мальчик",
