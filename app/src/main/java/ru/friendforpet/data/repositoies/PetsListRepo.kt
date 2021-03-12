@@ -1,8 +1,9 @@
 package ru.friendforpet.data.repositoies
 
 import ru.friendforpet.model.Pet
+import javax.inject.Inject
 
-class PetsListRepo {
+class PetsListRepo @Inject constructor() {
     //Ф-ция возвращает экземпляр класса Pet
     fun petListRepoMock(): Pet = Pet(
         141983,
