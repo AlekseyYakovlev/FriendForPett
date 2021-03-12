@@ -17,7 +17,7 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val petId = arguments?.getInt(PET_TAG, 0) ?: 0
+        val petId = arguments?.getInt(ARGUMENT_TAG, 0) ?: 0
         setupViews(petId)
     }
 
@@ -26,6 +26,6 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
     }
 
     companion object {
-        const val PET_TAG = "PET_ID"
+        const val ARGUMENT_TAG = "PET_ID"
     }
 }
