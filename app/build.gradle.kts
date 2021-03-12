@@ -50,7 +50,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-Xinline-classes") // allows to use inline-classes
+        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+    }
     buildFeatures {
         viewBinding = true
     }
