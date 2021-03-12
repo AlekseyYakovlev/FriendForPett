@@ -19,7 +19,8 @@ class PetsListRepo @Inject constructor() {
         listOf(
             "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
         ),
-        "23.03.2021"
+        "23.03.2021",
+       "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
     )
 
     //Функция возвращает список объектов класса Pet
@@ -38,7 +39,8 @@ class PetsListRepo @Inject constructor() {
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
-            "23.03.2021"
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
         ),
         Pet(
             141984,
@@ -54,7 +56,8 @@ class PetsListRepo @Inject constructor() {
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
-            "23.03.2021"
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
         ),
         Pet(
             141985,
@@ -70,7 +73,8 @@ class PetsListRepo @Inject constructor() {
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
-            "23.03.2021"
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
         ),
         Pet(
             141986,
@@ -86,7 +90,8 @@ class PetsListRepo @Inject constructor() {
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
-            "23.03.2021"
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
         ),
         Pet(
             141987,
@@ -102,7 +107,8 @@ class PetsListRepo @Inject constructor() {
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
-            "23.03.2021"
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
         )
     )
 }

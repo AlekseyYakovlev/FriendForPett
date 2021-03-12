@@ -1,4 +1,60 @@
 <resources>
     <string name="app_name">Friend For Pet</string>
+    <string name="city">Введите город</string>
+    <string name="your_location">Где вы находитесь</string>
+    <string name="whom_search_text">Кого вы ищете</string>
+    <string name="sex_of_pet_text">Пол питомца</string>
+    <string name="age_of_pet_text">Возраст питомца</string>
+    <string name="size_of_pet_text">Размер питомца</string>
+    <string name="personality_of_pet_text">Характер питомца</string>
+    <string name="hair_of_pet_text">Шерсть питомца</string>
+    <string name="color_of_pet_text">Окрас питомца</string>
+    <string name="clear">Очистить</string>
+    <string-array name="cities">
+        <item>Москва</item>
+    </string-array>
+
+    <string-array name="whomSearch">
+        <item>Не важно</item>
+        <item>Кошка</item>
+        <item>Собака</item>
+    </string-array>
+
+    <string-array name="sexOfPet">
+        <item>Любой</item>
+        <item>Мальчик</item>
+        <item>Девочка</item>
+    </string-array>
+
+    <string-array name="agePet">
+        <item>Любой</item>
+        <item>0–1 год</item>
+        <item>2–6 года</item>
+        <item>7+ лет</item>
+    </string-array>
+
+    <string-array name="sizePet">
+        <item>Любой</item>
+        <item>Маленький</item>
+        <item>Средний</item>
+        <item>Большой</item>
+    </string-array>
+
+    <string-array name="personalityPet">
+        <item>Любой</item>
+        <item>Спокойный</item>
+        <item>Активный</item>
+    </string-array>
+
+    <string-array name="hairPet">
+        <item>Любая</item>
+        <item>Длинная</item>
+        <item>Короткая</item>
+    </string-array>
+
+    <string-array name="colorPet">
+        <item>Любой</item>
+    </string-array>
+
     <string name="lorem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</string>
 </resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C6AD89"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@string/clear" />
+
+        <ImageView
+            android:id="@+id/img_refresh"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/editclear" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/your_location" />
+
+    <Spinner
+        android:id="@+id/spinnerCity"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/cities"
+        />
+
+    <TextView
+        android:id="@+id/text_whom_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/whom_search_text" />
+
+    <Spinner
+        android:id="@+id/spinnerWhom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/whomSearch" />
+
+    <TextView
+        android:id="@+id/text_sex_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/sex_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/sexPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/sexOfPet" />
+
+    <TextView
+        android:id="@+id/text_age_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/age_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/agePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/agePet" />
+
+    <TextView
+        android:id="@+id/text_size_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/size_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/sizePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/sizePet" />
+
+    <TextView
+        android:id="@+id/text_personality_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/personality_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/personalityPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/personalityPet" />
+
+    <TextView
+        android:id="@+id/text_hair_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/hair_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/hairPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/hairPet" />
+
+    <TextView
+        android:id="@+id/text_color_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textView_margin_top"
+        android:text="@string/color_of_pet_text" />
+
+    <Spinner
+        android:id="@+id/colorPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spinner_margin_top"
+        android:entries="@array/colorPet" />
+
+</LinearLayout>

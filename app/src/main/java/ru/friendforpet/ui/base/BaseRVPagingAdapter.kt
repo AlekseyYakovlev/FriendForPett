@@ -29,7 +29,7 @@ class BaseRVPagingAdapter<T : ViewBinding, R : RvItemData>(
 
     class BaseDiffCallback<R : RvItemData> : DiffUtil.ItemCallback<R>() {
         override fun areItemsTheSame(oldItem: R, newItem: R): Boolean =
-            oldItem.id == newItem.id
+            oldItem._id == newItem._id
 
 
         override fun areContentsTheSame(oldItem: R, newItem: R): Boolean =
