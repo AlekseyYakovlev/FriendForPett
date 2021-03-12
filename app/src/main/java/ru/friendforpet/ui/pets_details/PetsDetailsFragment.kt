@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.friendforpet.R
 
 @AndroidEntryPoint
-class PetsDetailsFragment : Fragment(R.layout.fragment_movies_list) {
-    private val viewModel: PetsDetailsViewModel by viewModels()
+class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
+   // private val viewModel: PetsDetailsViewModel by viewModels()
 
 }
