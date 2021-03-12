@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import coil.load
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetItemBinding
 import ru.friendforpet.databinding.FragmentPetsListBinding
@@ -29,8 +32,15 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             adapter = petsListRvAdapter
             setHasFixedSize(true)
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.getListFlow().collectLatest(::renderData)
+        }
     }
 
+    private fun renderData(data: List<PetsItemData>) {
+        petsListRvAdapter.updateData(data)
+    }
 
     private fun setupRecyclerViewAdapter() =
         BaseRVAdapter<FragmentPetItemBinding, PetsItemData>(
@@ -39,10 +49,12 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             },
             viewHolderBinder = { holder, itemData ->
                 with(holder) {
-
+                    ivPhoto.load(itemData.photo)
+                    tvName.text = itemData.name
+                    tvAge.text = itemData.age.toString()
+                    tvGender.text = itemData.sex
 
                     root.setOnClickListener {
-
 
                     }
                 }

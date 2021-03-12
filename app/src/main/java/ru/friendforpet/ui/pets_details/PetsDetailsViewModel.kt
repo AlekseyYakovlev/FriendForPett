@@ -9,4 +9,5 @@ import javax.inject.Inject
 class PetsDetailsViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ): ViewModel()  {
+
 }
