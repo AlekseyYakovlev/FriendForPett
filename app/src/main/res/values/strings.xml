@@ -10,6 +10,10 @@
     <string name="hair_of_pet_text">Шерсть питомца</string>
     <string name="color_of_pet_text">Окрас питомца</string>
     <string name="clear">Очистить</string>
+    <string-array name="cities">
+        <item>Москва</item>
+    </string-array>
+
     <string-array name="whomSearch">
         <item>Не важно</item>
         <item>Кошка</item>

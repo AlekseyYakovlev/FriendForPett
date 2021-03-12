@@ -34,10 +34,13 @@
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/your_location" />
 
-    <EditText
+    <Spinner
+        android:id="@+id/spinnerCity"
+        android:layout_marginTop="@dimen/spinner_margin_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/city" />
+        android:entries="@array/cities"
+        />
 
     <TextView
         android:id="@+id/text_whom_search"
