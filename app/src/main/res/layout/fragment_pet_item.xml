@@ -65,13 +65,13 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ru.friendforpet.ui.custom.CheckableImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ic_like"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
                 app:layout_constraintStart_toStartOf="@+id/imageGender"
                 app:layout_constraintTop_toTopOf="@id/guideline_top_item"
-                app:srcCompat="@drawable/ic_like_2" />
+                android:src="@drawable/like_states" />
 
 
             <TextView
