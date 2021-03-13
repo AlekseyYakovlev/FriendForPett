@@ -48,8 +48,6 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
             vb.detailsSexDesc.text = sex
             vb.detailsWeightDesc.text = size
         }
-
-
     }
 
     companion object {
