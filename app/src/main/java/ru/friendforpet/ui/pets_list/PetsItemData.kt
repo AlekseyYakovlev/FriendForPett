@@ -6,7 +6,7 @@ class PetsItemData(
   override val _id: Int,
   val name: String,
   val sex: String,
-  val age: Int,
+  val age: String,
   val location: String,
   val size: String,
   val personality: String,
