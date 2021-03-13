@@ -3,6 +3,10 @@
     <dimen name="textView_margin_top">15dp</dimen>
     <dimen name="spinner_margin_top">5dp</dimen>
 
+
+
+    <dimen name="card_stroke_pik">5dp</dimen>
+
     <item name="card_image_overlap" format="float" type="dimen">0.28</item>
     <item name="card_image_up_overlap" format="float" type="dimen">0.36</item>
 

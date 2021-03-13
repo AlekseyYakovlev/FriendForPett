@@ -16,9 +16,12 @@ class PetsListViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ) : ViewModel() {
 
-    var pickedCity: String = ""
+    var pickedCity : String = ""
 
     private val _filterState = MutableStateFlow(Filter())
+
+    var isDogPicked = MutableStateFlow(false)
+    var isCatPicked = MutableStateFlow(false)
 
 
     init {

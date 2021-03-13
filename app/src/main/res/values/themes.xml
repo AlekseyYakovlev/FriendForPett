@@ -78,20 +78,27 @@
 
 
     <style name="Theme.FriendForPet.Welcome" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="hintTextAppearance">@style/Theme.FriendForPet.Welcome.HintText</item>
         <item name="endIconDrawable">@drawable/ic_round_location_on_24</item>
         <item name="helperTextEnabled">true</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="cornerSize">16dp</item>
+        <item name="errorTextAppearance">@style/Theme.FriendForPet.Welcome.ErrorText</item>
+
 
         <item name="boxStrokeColor">@color/colorAccent</item> <!-- ЦВЕТ ОКРУЖАЮЩЕЙ ЛИНИИ -->
         <item name="hintTextColor">@color/filled_boxs_head_text</item>  <!-- Цвет текста в верху-->
         <item name="android:textColorHint">@color/color_text</item> <!-- Цвет текста снизу-->
     </style>
-    <style name="HintText" parent="TextAppearance.AppCompat">
+    <style name="Theme.FriendForPet.Welcome.HintText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/filled_boxs_stroke_focusable</item>
         <item name="android:fontStyle" tools:targetApi="o">@font/rubik</item>
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Theme.FriendForPet.Welcome.ErrorText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:fontStyle" tools:targetApi="o">@font/rubik</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

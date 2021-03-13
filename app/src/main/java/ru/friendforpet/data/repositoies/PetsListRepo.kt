@@ -177,7 +177,7 @@ class PetsListRepo @Inject constructor(
 data class Filters(
     val city: List<String> = listOf("Moscow"),
     val animalType: Map<String, String> = mutableMapOf(),
-    val age: List<String> = listOf(),
+    val age: List<String>? = listOf(),
     val gender: Map<String, String> = mutableMapOf(),
     val animalSize: Map<String, String> = mutableMapOf(),
     val animalFurr: Map<String, String> = mutableMapOf(),
@@ -186,10 +186,19 @@ data class Filters(
 ) {
     companion object {
 
-        fun getInstance(age: String, city: String = "Moscow"): Filters = Filters(
+        const val FILTER_CITY ="city"
+        const val FILTER_ANIMAL_TYPE ="animalType"
+        const val FILTER_AGE ="age"
+        const val FILTER_GENDER ="gender"
+        const val FILTER_ANIMAL_SIZE ="animalSize"
+        const val FILTER_ANIMAL_FURR ="animalFurr"
+        const val FILTER_COLOR ="color"
+        const val FILTER_CHARACTER ="character"
+
+        fun getMockInstance(age: List<String>? = null): Filters = Filters(
             animalType = getAnimalType(),
-            age = listOf(age),
-            city = listOf(city),
+            age = age,
+            city = listOf("Москва","Санкт-Петербург"),
             gender = getGender(),
             animalSize = getAnimalSize(),
             animalFurr = getAnimalFurr(),
@@ -198,8 +207,8 @@ data class Filters(
         )
 
         private fun getAnimalType(): Map<String, String> = mapOf(
-            "1" to "Cat",
-            "2" to "Dog"
+            "1" to "Кошка",
+            "2" to "Собака"
         )
 
         private fun getGender(): Map<String, String> = mapOf(

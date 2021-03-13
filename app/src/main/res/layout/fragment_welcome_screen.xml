@@ -41,7 +41,7 @@
         app:layout_constraintStart_toEndOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/tv_select_city_desc"
         app:strokeColor="@color/colorAccent"
-        app:strokeWidth="6dp">
+        >
 
         <ImageView
             android:layout_width="100dp"
@@ -58,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="30dp"
+        app:strokeColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toEndOf="@+id/cv_cat"
         app:layout_constraintTop_toTopOf="@+id/cv_cat">
