@@ -39,4 +39,6 @@ class PetEntity (
     val photo: String,
     @ColumnInfo(name = "isLiked")
     val isLiked: Boolean = false,
+    @ColumnInfo(name = "type")
+    val type: String,
 )

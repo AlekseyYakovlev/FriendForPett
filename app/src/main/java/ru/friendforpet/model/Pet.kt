@@ -15,4 +15,5 @@ data class Pet(
     val addedDate: String,
     val photo: String,
     val isLiked: Boolean = false,
+    val type: String,
 )
