@@ -2,10 +2,13 @@ package ru.friendforpet.data.repositoies
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ru.friendforpet.data.db.AppDb
 import ru.friendforpet.model.Pet
 import javax.inject.Inject
 
-class PetsListRepo @Inject constructor() {
+class PetsListRepo @Inject constructor(
+    db: AppDb
+) {
     //Ф-ция возвращает экземпляр класса Pet
     fun petListRepoMock(): Flow<Pet> = flow {
         emit(
