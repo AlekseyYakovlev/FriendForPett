@@ -3,12 +3,15 @@ package ru.friendforpet.data.repositoies
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.friendforpet.data.db.AppDb
+import ru.friendforpet.data.db.daos.PetsDao
 import ru.friendforpet.model.Pet
 import javax.inject.Inject
 
 class PetsListRepo @Inject constructor(
-    db: AppDb
+    db: AppDb,
+    petsDao: PetsDao,
 ) {
+
     //Ф-ция возвращает экземпляр класса Pet
     fun petListRepoMock(): Flow<Pet> = flow {
         emit(
@@ -129,42 +132,42 @@ class PetsListRepo @Inject constructor(
 
 
 /**
-* Структура БД
-*
-* city - "Moscow"
-*
-* @param animalType
-* 1 - Cat
-* 2 - Dog
-*
-* @param gender
-* 1 - Girl
-* 2 - Boy
-*
-* @param age -
-* 3 Int
-*
-* @param animalSize
-* 1 - small
-* 2 - middle
-* 3 - Big
-*
-* @param animalFurr
-* 1 - Long hair
-* 2 - short hair
-*
-* @param color
-* 1 - Черный
-* 2 - коричневый
-* 3 - бежевый
-* 4 - рыжий
-* 5 - песочный
-* 7 - белый
-* 8 - дымчатый
-*
-* @param character
-* 1 - Calm
-* 2 - Active
+ * Структура БД
+ *
+ * city - "Moscow"
+ *
+ * @param animalType
+ * 1 - Cat
+ * 2 - Dog
+ *
+ * @param gender
+ * 1 - Girl
+ * 2 - Boy
+ *
+ * @param age -
+ * 3 Int
+ *
+ * @param animalSize
+ * 1 - small
+ * 2 - middle
+ * 3 - Big
+ *
+ * @param animalFurr
+ * 1 - Long hair
+ * 2 - short hair
+ *
+ * @param color
+ * 1 - Черный
+ * 2 - коричневый
+ * 3 - бежевый
+ * 4 - рыжий
+ * 5 - песочный
+ * 7 - белый
+ * 8 - дымчатый
+ *
+ * @param character
+ * 1 - Calm
+ * 2 - Active
  */
 data class Filters(
     val city: List<String> = listOf("Moscow"),
@@ -178,16 +181,16 @@ data class Filters(
 ) {
     companion object {
 
-        fun getInstance(age : String ,city: String = "Moscow"): Filters = Filters(
+        fun getInstance(age: String, city: String = "Moscow"): Filters = Filters(
             animalType = getAnimalType(),
-            age= listOf(age),
+            age = listOf(age),
             city = listOf(city),
             gender = getGender(),
             animalSize = getAnimalSize(),
             animalFurr = getAnimalFurr(),
             color = getColor(),
             character = getCharacter()
-            )
+        )
 
         private fun getAnimalType(): Map<String, String> = mapOf(
             "1" to "Cat",
@@ -205,22 +208,25 @@ data class Filters(
                 "2" to "middle",
                 "3" to "Big"
             )
+
         private fun getAnimalFurr(): Map<String, String> =
             mapOf(
                 "1" to "Long hair",
                 "2" to "short hair"
             )
-        private fun getColor(): Map<String, String> =
-        mapOf(
-            "1" to "Черный",
-            "2" to "коричневый",
-            "3" to "бежевый",
-            "4" to "рыжий",
-            "5" to "песочный",
-            "7" to "белый",
-            "8" to "дымчатый"
 
-        )
+        private fun getColor(): Map<String, String> =
+            mapOf(
+                "1" to "Черный",
+                "2" to "коричневый",
+                "3" to "бежевый",
+                "4" to "рыжий",
+                "5" to "песочный",
+                "7" to "белый",
+                "8" to "дымчатый"
+
+            )
+
         private fun getCharacter(): Map<String, String> =
             mapOf(
                 "1" to "Calm",
