@@ -39,13 +39,14 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
     }
 
     private fun renderScreen(petData: Pet) {
-        with(petData){
+        with(petData) {
             vb.detailsPetImage.load(photo)
-            vb.detailsNamePet.text=name
+            vb.detailsNamePet.text = name
             vb.detailsAgeDesc.text = "$age лет"
             vb.detailsColorDesc.text = color
             vb.detailsPetAboutDecs.text = description
             vb.detailsSexDesc.text = sex
+            vb.detailsWeightDesc.text = size
         }
 
 
