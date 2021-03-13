@@ -1,12 +1,14 @@
 package ru.friendforpet.ui.pets_list
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import ru.friendforpet.data.repositoies.PetsListRepo
 import ru.friendforpet.model.Pet
 import timber.log.Timber
@@ -17,6 +19,13 @@ class PetsListViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ) : ViewModel() {
 
+    init {
+       viewModelScope.launch (Dispatchers.IO){
+           petsListRepo.insertInitialValues()
+       }
+
+    }
+
     fun getListFlow(): Flow<List<PetsItemData>> =
         petsListRepo.getPetsList()
             .flowOn(Dispatchers.IO)
@@ -24,6 +33,12 @@ class PetsListViewModel @Inject constructor(
             .map { list ->
                 list.map { it.toPetItemData() }
             }
+
+    fun handleLike(petId: Int, isLiked: Boolean) {
+        viewModelScope.launch (Dispatchers.IO){
+            petsListRepo.updateIsLiked(petId,isLiked)
+        }
+    }
 
 }
 

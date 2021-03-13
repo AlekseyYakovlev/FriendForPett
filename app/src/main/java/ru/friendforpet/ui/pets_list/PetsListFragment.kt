@@ -77,6 +77,10 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                             null
                         )
                     )
+                    icLike.isChecked = itemData.isLiked
+                    icLike.setOnClickListener {
+                        viewModel.handleLike(itemData._id,!itemData.isLiked)
+                    }
 
                     root.setOnClickListener {
                         navigator.navigateTo(

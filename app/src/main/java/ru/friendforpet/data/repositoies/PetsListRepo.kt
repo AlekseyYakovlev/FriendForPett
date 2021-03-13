@@ -1,6 +1,7 @@
 package ru.friendforpet.data.repositoies
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import ru.friendforpet.data.db.AppDb
@@ -19,33 +20,14 @@ class PetsListRepo @Inject constructor(
         petsDao.insertAll(provideDummyList())
     }
 
-    //Ф-ция возвращает экземпляр класса Pet
-    fun getPet(petId: Int): Flow<Pet> = flow {
-        emit(
-            Pet(
-                petId,
-                "Мухтар",
-                "Мальчик",
-                3,
-                "Москва",
-                "Большая",
-                "Дружелюбная",
-                "Длинношерстная",
-                "Черно-рыжий",
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n" +
-                        "        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n" +
-                        "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
-                listOf(
-                    "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-                ),
-                "23.03.2021",
-                "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-            )
-        )
+    suspend fun updateIsLiked(petId: Int, isLiked: Boolean) {
+        petsDao.updateIsLiked(petId, isLiked)
     }
 
+    fun getPet(petId: Int): Flow<Pet> =
+        petsDao.getPetsByIdFlow(petId).filterNotNull().map { it.toPet() }
 
-    //Функция возвращает список объектов класса Pet
+
     fun getPetsList(): Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
         list.map { it.toPet() }
     }
@@ -158,6 +140,8 @@ class PetsListRepo @Inject constructor(
         photo = photo,
         isLiked = isLiked,
     )
+
+
 }
 
 
