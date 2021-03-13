@@ -51,7 +51,9 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            false,
+            "Собака"
         ),
         PetEntity(
             141984,
@@ -68,7 +70,9 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            false,
+            "Собака"
         ),
         PetEntity(
             141985,
@@ -85,14 +89,16 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            false,
+            "Собака"
         ),
         PetEntity(
             141986,
             "Ника",
             "Девочка",
             2,
-            "Москва",
+            "Санкт-Петербург",
             "Большая",
             "Дружелюбная",
             "Длинношерстная",
@@ -102,11 +108,13 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            false,
+            "Собака"
         ),
         PetEntity(
             141987,
-            "Мухтар",
+            "Пусик",
             "Мальчик",
             3,
             "Москва",
@@ -119,7 +127,9 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            false,
+            "Кошка"
         )
     )
 
@@ -138,6 +148,7 @@ class PetsListRepo @Inject constructor(
         addedDate = addedDate,
         photo = photo,
         isLiked = isLiked,
+        type = type,
     )
 
 
@@ -187,7 +198,7 @@ data class Filters(
     companion object {
 
         const val FILTER_CITY ="city"
-        const val FILTER_ANIMAL_TYPE ="animalType"
+        const val FILTER_ANIMAL_TYPE ="type"
         const val FILTER_AGE ="age"
         const val FILTER_GENDER ="gender"
         const val FILTER_ANIMAL_SIZE ="animalSize"

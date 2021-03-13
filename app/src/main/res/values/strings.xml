@@ -12,6 +12,9 @@
     <string name="clear">Очистить</string>
     <string-array name="cities">
         <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Казань</item>
+        <item>Краснодар</item>
     </string-array>
 
     <string-array name="whomSearch">
