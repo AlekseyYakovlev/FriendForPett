@@ -27,8 +27,6 @@ class PetsListViewModel @Inject constructor(
         }
     }
 
-    private val filtersMap = mutableMapOf<String, String>()
-
     fun getListFlow(): Flow<List<PetsItemData>> =
         petsListRepo.petsListFlow
             .flowOn(Dispatchers.IO)
@@ -43,7 +41,12 @@ class PetsListViewModel @Inject constructor(
         }
     }
 
-    fun updateFilter(field: String, value: String) {
+    fun updateFilter(field: String, rawValue: String) {
+        val value = when (rawValue) {
+            in listOf("Не важно", "Любой", "Любая") -> ""
+            else -> rawValue
+        }
+
         when (field) {
             "location" -> {
                 _filterState.value = _filterState.value.copy(location = value)
@@ -55,26 +58,36 @@ class PetsListViewModel @Inject constructor(
             }
             "gender" -> {
                 _filterState.value = _filterState.value.copy(gender = value)
+                Timber.tag("123").d("gender = $value")
             }
-            "age" -> {
-                _filterState.value = _filterState.value.copy(age = value)
+            "minAge" -> {
+                _filterState.value = _filterState.value.copy(minAge = value)
+                Timber.tag("123").d("age = $value")
+            }
+            "maxAge" -> {
+                _filterState.value = _filterState.value.copy(maxAge = value)
+                Timber.tag("123").d("age = $value")
             }
             "size" -> {
                 _filterState.value = _filterState.value.copy(size = value)
+                Timber.tag("123").d("size = $value")
             }
             "personality" -> {
                 _filterState.value = _filterState.value.copy(personality = value)
+                Timber.tag("123").d("personality = $value")
             }
             "hair" -> {
                 _filterState.value = _filterState.value.copy(hair = value)
+                Timber.tag("123").d("hair = $value")
             }
             "color" -> {
                 _filterState.value = _filterState.value.copy(color = value)
+                Timber.tag("123").d("color = $value")
             }
         }
     }
 
-    fun cleanFilter(){
+    fun cleanFilter() {
         _filterState.value = Filter()
     }
 }
@@ -83,7 +96,8 @@ data class Filter(
     val location: String = "",
     val type: String = "",
     val gender: String = "",
-    val age: String = "",
+    val minAge: String = "",
+    val maxAge: String = "",
     val size: String = "",
     val personality: String = "",
     val hair: String = "",

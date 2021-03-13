@@ -54,6 +54,13 @@
 
     <string-array name="colorPet">
         <item>Любой</item>
+        <item>Черный</item>
+        <item>Коричневы</item>
+        <item>Бежевый</item>
+        <item>Рыжий</item>
+        <item>Песочный</item>
+        <item>Белый</item>
+        <item>Дымчатый</item>
     </string-array>
 
     <string name="lorem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
