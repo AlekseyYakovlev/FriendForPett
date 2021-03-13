@@ -14,4 +14,5 @@ data class Pet(
     val tags: List<String>,
     val addedDate: String,
     val photo: String,
+    val isLiked: Boolean = false,
 )
