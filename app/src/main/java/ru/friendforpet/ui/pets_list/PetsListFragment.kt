@@ -14,6 +14,7 @@ import ru.friendforpet.databinding.FragmentPetItemBinding
 import ru.friendforpet.databinding.FragmentPetsListBinding
 import ru.friendforpet.ui.base.BaseRVAdapter
 import ru.friendforpet.ui.utils.viewBinding
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,11 +38,13 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
         }
 
         lifecycleScope.launchWhenStarted {
+            Timber.tag("1234567").d("launchWhenStarted")
             viewModel.getListFlow().collectLatest(::renderData)
         }
     }
 
     private fun renderData(data: List<PetsItemData>) {
+        Timber.tag("1234567").d("data.size ${data.size}")
         petsListRvAdapter.updateData(data)
     }
 
