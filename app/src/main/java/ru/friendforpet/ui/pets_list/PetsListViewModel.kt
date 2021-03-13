@@ -19,6 +19,8 @@ class PetsListViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ) : ViewModel() {
 
+    var pickedCity : String = ""
+
     init {
        viewModelScope.launch (Dispatchers.IO){
            petsListRepo.insertInitialValues()
