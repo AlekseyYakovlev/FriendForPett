@@ -65,4 +65,5 @@
     <string name="details_color">Color</string>
     <string name="details_about">About</string>
     <string name="details_adoption">adoption</string>
+    <string name="pets_list_filter_fab">Filter</string>
 </resources>

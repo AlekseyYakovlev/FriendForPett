@@ -26,7 +26,7 @@
                 app:shapeAppearanceOverlay="@style/Theme.FriendForPet.ImageViewDetails"
                 app:srcCompat="@drawable/image_sample_delails" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/details_nav_back"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        app:layout_constraintGuide_begin="86dp" />
+                        app:layout_constraintGuide_begin="65dp" />
 
 
                     <androidx.constraintlayout.widget.Guideline
@@ -109,7 +109,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:layout_marginBottom="32dp"
+                        android:layout_marginBottom="24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_top_card"
                         app:layout_constraintEnd_toEndOf="@id/guideline_end_card"
                         app:layout_constraintStart_toStartOf="@id/guideline_start_card"
@@ -233,7 +233,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
                 android:text="@string/details_about"
                 android:textColor="@color/black"
@@ -283,6 +283,7 @@
                 android:id="@+id/materialButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="160dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/details_adoption"
