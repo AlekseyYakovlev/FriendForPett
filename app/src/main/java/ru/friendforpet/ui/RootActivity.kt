@@ -10,14 +10,15 @@ import ru.friendforpet.ui.utils.viewBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RootActivity : AppCompatActivity(R.layout.activity_root) {
-    // private val vb by viewBinding(ActivityRootBinding::bind, R.id.root_container)
+class RootActivity : AppCompatActivity() {
+    //  private val vb by viewBinding(ActivityRootBinding::bind, R.id.root_container)
 
     @Inject
     lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_root)
         setupNavigation(savedInstanceState == null)
     }
 

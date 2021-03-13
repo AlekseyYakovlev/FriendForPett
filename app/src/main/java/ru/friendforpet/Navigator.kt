@@ -13,7 +13,7 @@ class Navigator @Inject constructor(
     activity: RootActivity
 ) {
     private val navigationContainerId = R.id.root_container
-    private val fragmentManager = activity.supportFragmentManager.also { fm->
+    private val fragmentManager = activity.supportFragmentManager.also { fm ->
         fm.addOnBackStackChangedListener {
             if (fm.backStackEntryCount == 0) activity.finish()
         }

@@ -76,7 +76,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.3.0-alpha03")
 
     // Fragment KTX
-    implementation("androidx.fragment:fragment-ktx:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.1")
 
     // Lifecycle, ViewModel and LiveData
     val lifecycleVersion = "2.3.0"
