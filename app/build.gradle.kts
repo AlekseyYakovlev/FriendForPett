@@ -41,7 +41,7 @@ android {
     flavorDimensions("serverType")
     productFlavors {
         create("serverType") {
-            buildConfigField("String", "BASE_URL", "\"https://some_adress/\"")
+            buildConfigField("String", "BASE_URL", "\"https://documents.zenithapps.net/api/\"")
             buildConfigField("String", "API_KEY", "\"some_key\"")
         }
     }
