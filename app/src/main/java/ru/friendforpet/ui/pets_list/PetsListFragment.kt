@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
-    private val viewModel: PetsListViewModel by viewModels()
+    private val viewModel: PetsListViewModel by activityViewModels()
     private val vb by viewBinding(FragmentPetsListBinding::bind)
     private val petsListRvAdapter by lazy(::setupRecyclerViewAdapter)
 
@@ -71,11 +71,11 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                     imageGender.setImageDrawable(
                         if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(
                             imageGender.context.resources,
-                            R.drawable.ic_baseline_female_24,
+                            R.drawable.ic_baseline_male_24,
                             null
                         ) else ResourcesCompat.getDrawable(
                             imageGender.context.resources,
-                            R.drawable.ic_baseline_male_24,
+                            R.drawable.ic_baseline_female_24,
                             null
                         )
                     )

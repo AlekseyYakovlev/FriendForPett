@@ -16,7 +16,7 @@ class PetsListViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ) : ViewModel() {
 
-    var pickedCity : String = ""
+    var pickedCity: String = ""
 
     private val _filterState = MutableStateFlow(Filter())
 
@@ -25,6 +25,7 @@ class PetsListViewModel @Inject constructor(
 
 
     init {
+        Timber.tag("123").d("viewModel init")
         viewModelScope.launch(Dispatchers.IO) {
             petsListRepo.insertInitialValues()
         }
@@ -35,7 +36,19 @@ class PetsListViewModel @Inject constructor(
             .flowOn(Dispatchers.IO)
             .onEach { Timber.tag("123").d("New Value") }
             .map { list ->
-                list.map { it.toPetItemData() }
+                val filter = _filterState.value
+                Timber.tag("123").d(filter.toString())
+                list.filter { pet ->
+                    (filter.location.isEmpty() || filter.location == pet.location) &&
+                            (filter.type.isEmpty() || filter.type == pet.type) &&
+                            (filter.type.isEmpty() || filter.type == pet.type) &&
+                            (filter.gender.isEmpty() || filter.gender == pet.sex) &&
+                            (filter.size.isEmpty() || filter.size == pet.size) &&
+                            (filter.personality.isEmpty() || filter.personality == pet.personality) &&
+                            (filter.hair.isEmpty() || filter.hair == pet.hair) &&
+                            (filter.color.isEmpty() || filter.color == pet.color)
+                }
+                    .map { it.toPetItemData() }
             }
 
     fun handleLike(petId: Int, isLiked: Boolean) {
@@ -63,13 +76,17 @@ class PetsListViewModel @Inject constructor(
                 _filterState.value = _filterState.value.copy(gender = value)
                 Timber.tag("123").d("gender = $value")
             }
-            "minAge" -> {
+            "age" -> {
                 _filterState.value = _filterState.value.copy(minAge = value)
                 Timber.tag("123").d("age = $value")
             }
+            "minAge" -> {
+                _filterState.value = _filterState.value.copy(minAge = value)
+                Timber.tag("123").d("minAge = $value")
+            }
             "maxAge" -> {
                 _filterState.value = _filterState.value.copy(maxAge = value)
-                Timber.tag("123").d("age = $value")
+                Timber.tag("123").d("maxAge = $value")
             }
             "size" -> {
                 _filterState.value = _filterState.value.copy(size = value)
@@ -99,6 +116,7 @@ data class Filter(
     val location: String = "",
     val type: String = "",
     val gender: String = "",
+    val age: String = "",
     val minAge: String = "",
     val maxAge: String = "",
     val size: String = "",
@@ -123,4 +141,5 @@ fun Pet.toPetItemData() = PetsItemData(
     addedDate = addedDate,
     photo = photo,
     isLiked = isLiked,
+    type = type,
 )

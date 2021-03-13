@@ -6,10 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast.LENGTH_LONG
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,14 +17,13 @@ import kotlinx.coroutines.launch
 import ru.friendforpet.Navigator
 import ru.friendforpet.R
 import ru.friendforpet.data.repositoies.Filters
-import ru.friendforpet.data.repositoies.Filters.Companion.FILTER_ANIMAL_TYPE
 import ru.friendforpet.databinding.FragmentWelcomeScreenBinding
 import ru.friendforpet.ui.utils.viewBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
-    private val viewModel: PetsListViewModel by viewModels()
+    private val viewModel: PetsListViewModel by activityViewModels()
     private val vb by viewBinding(FragmentWelcomeScreenBinding::bind)
 
     private val filter = Filters.getMockInstance()
@@ -82,7 +80,8 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
                 viewModel.apply {
                     viewModel.isCatPicked.value = true
                     viewModel.isDogPicked.value = false
-                    viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["1"].toString())
+                    //viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["1"].toString())
+                    viewModel.updateFilter("type", "Кошка")
                 }
 
             }
@@ -90,7 +89,8 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
                 viewModel.apply {
                     viewModel.isDogPicked.value = true
                     viewModel.isCatPicked.value = false
-                    viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["2"].toString())
+                    //viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["2"].toString())
+                    viewModel.updateFilter("type", "Собака")
                 }
             }
         }
@@ -101,15 +101,16 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
         vb.mbSubmit.setOnClickListener {
             if (vb.acDropdown.text.isBlank()) {
 
-                Snackbar.make(vb.acDropdown, " Выберите город", Snackbar.LENGTH_LONG).setBackgroundTint(
-                    ResourcesCompat.getColor(
-                        resources,
-                        R.color.colorAccent,
-                        null
-                    )
-                ).setTextColor(
-                    Color.WHITE
-                ).show()
+                Snackbar.make(vb.acDropdown, " Выберите город", Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.colorAccent,
+                            null
+                        )
+                    ).setTextColor(
+                        Color.WHITE
+                    ).show()
 
                 vb.acDropdown.showDropDown()
             } else {

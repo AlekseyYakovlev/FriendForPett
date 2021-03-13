@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetsListFilterBinding
@@ -12,7 +12,7 @@ import ru.friendforpet.ui.utils.viewBinding
 
 @AndroidEntryPoint
 class FilterFragment : Fragment(R.layout.fragment_pets_list_filter) {
-    private val viewModel: PetsListViewModel by viewModels()
+    private val viewModel: PetsListViewModel by activityViewModels()
     private val vb by viewBinding(FragmentPetsListFilterBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
