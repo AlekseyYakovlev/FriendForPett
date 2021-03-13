@@ -27,12 +27,12 @@ abstract class AppDb : RoomDatabase() {
 
         fun getInstance(context: Context):RoomDatabase{
             return INSTANCE ?: synchronized(this){
-                val intstance = Room.databaseBuilder(
+                val instance = Room.databaseBuilder(
                     context,AppDb::class.java, DATA_BASE_NAME
                 )
                     .build()
-                INSTANCE = intstance
-                intstance
+                INSTANCE = instance
+                instance
             }
 
         }
