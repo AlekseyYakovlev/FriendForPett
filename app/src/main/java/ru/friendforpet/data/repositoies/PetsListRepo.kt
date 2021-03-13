@@ -2,18 +2,25 @@ package ru.friendforpet.data.repositoies
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import ru.friendforpet.data.db.AppDb
 import ru.friendforpet.data.db.daos.PetsDao
+import ru.friendforpet.data.db.entities.PetEntity
 import ru.friendforpet.model.Pet
+import ru.friendforpet.ui.pets_list.PetsItemData
 import javax.inject.Inject
 
 class PetsListRepo @Inject constructor(
-    db: AppDb,
-    petsDao: PetsDao,
+    private val db: AppDb,
+    private val petsDao: PetsDao,
 ) {
 
+    suspend fun insertInitialValues() {
+        petsDao.insertAll(provideDummyList())
+    }
+
     //Ф-ция возвращает экземпляр класса Pet
-    fun getPet(petId:Int): Flow<Pet> = flow {
+    fun getPet(petId: Int): Flow<Pet> = flow {
         emit(
             Pet(
                 petId,
@@ -39,99 +46,118 @@ class PetsListRepo @Inject constructor(
 
 
     //Функция возвращает список объектов класса Pet
-    fun getPetsList(): Flow<List<Pet>> = flow {
-        emit(
-            listOf(
-                Pet(
-                    141983,
-                    "Мухтар",
-                    "Мальчик",
-                    3,
-                    "Москва",
-                    "Большая",
-                    "Дружелюбная",
-                    "Длинношерстная",
-                    "Черно-рыжий",
-                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n" +
-                            "        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n" +
-                            "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
-                    listOf(
-                        "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-                    ),
-                    "23.03.2021",
-                    "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-                ),
-                Pet(
-                    141984,
-                    "Ника",
-                    "Девочка",
-                    2,
-                    "Москва",
-                    "Большая",
-                    "Дружелюбная",
-                    "Длинношерстная",
-                    "Бело-рыжий",
-                    "Отзывчивая, обучаемая, спокойная, ладит с детьми",
-                    listOf(
-                        "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
-                    ),
-                    "23.03.2021",
-                    "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-                ),
-                Pet(
-                    141985,
-                    "Мухтар",
-                    "Мальчик",
-                    3,
-                    "Москва",
-                    "Большая",
-                    "Дружелюбная",
-                    "Длинношерстная",
-                    "Черно-рыжий",
-                    "Отзывчивый, обучаемый, спокойный, ладит с детьми",
-                    listOf(
-                        "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-                    ),
-                    "23.03.2021",
-                    "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-                ),
-                Pet(
-                    141986,
-                    "Ника",
-                    "Девочка",
-                    2,
-                    "Москва",
-                    "Большая",
-                    "Дружелюбная",
-                    "Длинношерстная",
-                    "Бело-рыжий",
-                    "Отзывчивая, обучаемая, спокойная, ладит с детьми",
-                    listOf(
-                        "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
-                    ),
-                    "23.03.2021",
-                    "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-                ),
-                Pet(
-                    141987,
-                    "Мухтар",
-                    "Мальчик",
-                    3,
-                    "Москва",
-                    "Большая",
-                    "Дружелюбная",
-                    "Длинношерстная",
-                    "Черно-рыжий",
-                    "Отзывчивый, обучаемый, спокойный, ладит с детьми",
-                    listOf(
-                        "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-                    ),
-                    "23.03.2021",
-                    "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
-                )
-            )
-        )
+    fun getPetsList(): Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
+        list.map { it.toPet() }
     }
+
+
+
+    private fun provideDummyList(): List<PetEntity> = listOf(
+        PetEntity(
+            141983,
+            "Мухтар",
+            "Мальчик",
+            3,
+            "Москва",
+            "Большая",
+            "Дружелюбная",
+            "Длинношерстная",
+            "Черно-рыжий",
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n" +
+                    "        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n" +
+                    "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
+            listOf(
+                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
+            ),
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+        ),
+        PetEntity(
+            141984,
+            "Ника",
+            "Девочка",
+            2,
+            "Москва",
+            "Большая",
+            "Дружелюбная",
+            "Длинношерстная",
+            "Бело-рыжий",
+            "Отзывчивая, обучаемая, спокойная, ладит с детьми",
+            listOf(
+                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
+            ),
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+        ),
+        PetEntity(
+            141985,
+            "Мухтар",
+            "Мальчик",
+            3,
+            "Москва",
+            "Большая",
+            "Дружелюбная",
+            "Длинношерстная",
+            "Черно-рыжий",
+            "Отзывчивый, обучаемый, спокойный, ладит с детьми",
+            listOf(
+                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
+            ),
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+        ),
+        PetEntity(
+            141986,
+            "Ника",
+            "Девочка",
+            2,
+            "Москва",
+            "Большая",
+            "Дружелюбная",
+            "Длинношерстная",
+            "Бело-рыжий",
+            "Отзывчивая, обучаемая, спокойная, ладит с детьми",
+            listOf(
+                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
+            ),
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+        ),
+        PetEntity(
+            141987,
+            "Мухтар",
+            "Мальчик",
+            3,
+            "Москва",
+            "Большая",
+            "Дружелюбная",
+            "Длинношерстная",
+            "Черно-рыжий",
+            "Отзывчивый, обучаемый, спокойный, ладит с детьми",
+            listOf(
+                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
+            ),
+            "23.03.2021",
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize"
+        )
+    )
+
+    private fun PetEntity.toPet() = Pet(
+        _id = _id,
+        name = name,
+        sex = sex,
+        age = age,
+        location = location,
+        size = size,
+        personality = personality,
+        hair = hair,
+        color = color,
+        description = description,
+        tags = tags,
+        addedDate = addedDate,
+        photo = photo,
+        isLiked = isLiked,
+    )
 }
 
 
