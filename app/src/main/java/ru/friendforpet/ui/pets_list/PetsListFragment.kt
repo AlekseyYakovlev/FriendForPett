@@ -78,6 +78,7 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                         )
                     )
                     icLike.isChecked = itemData.isLiked
+                    Timber.tag("123").d("${itemData.name} ${itemData.isLiked}")
                     icLike.setOnClickListener {
                         viewModel.handleLike(itemData._id,!itemData.isLiked)
                     }

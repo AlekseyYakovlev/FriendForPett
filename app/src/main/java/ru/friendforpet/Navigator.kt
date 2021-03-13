@@ -6,6 +6,7 @@ import androidx.fragment.app.commit
 import ru.friendforpet.ui.RootActivity
 import ru.friendforpet.ui.pets_details.PetsDetailsFragment
 import ru.friendforpet.ui.pets_list.PetsListFragment
+import ru.friendforpet.ui.pets_list.WelcomeScreenFragment
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -58,6 +59,10 @@ class Navigator @Inject constructor(
         PETS_LIST_FRAGMENT(
             PetsListFragment::class.java,
             "PETS_LIST_FRAGMENT"
+        ),
+        WELCOME_SCREEN_FRAGMENT(
+            WelcomeScreenFragment::class.java,
+            "WELCOME_SCREEN_FRAGMENT"
         ),
     }
 }

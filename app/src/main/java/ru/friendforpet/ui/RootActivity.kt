@@ -24,7 +24,7 @@ class RootActivity : AppCompatActivity() {
 
     private fun setupNavigation(isInitial: Boolean) {
         if (isInitial) {
-            navigator.navigateTo(Navigator.Destination.PETS_LIST_FRAGMENT)
+            navigator.navigateTo(Navigator.Destination.WELCOME_SCREEN_FRAGMENT)
         }
     }
 }

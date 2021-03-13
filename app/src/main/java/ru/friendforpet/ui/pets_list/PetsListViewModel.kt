@@ -23,8 +23,9 @@ class PetsListViewModel @Inject constructor(
        viewModelScope.launch (Dispatchers.IO){
            petsListRepo.insertInitialValues()
        }
-
     }
+
+    private val filtersMap = mutableMapOf<String, String>()
 
     fun getListFlow(): Flow<List<PetsItemData>> =
         petsListRepo.petsListFlow
@@ -40,6 +41,9 @@ class PetsListViewModel @Inject constructor(
         }
     }
 
+    fun updateFilter(){
+
+    }
 }
 
 fun Pet.toPetItemData() = PetsItemData(
