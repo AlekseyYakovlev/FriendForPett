@@ -13,10 +13,10 @@ class PetsListRepo @Inject constructor(
 ) {
 
     //Ф-ция возвращает экземпляр класса Pet
-    fun petListRepoMock(): Flow<Pet> = flow {
+    fun getPet(petId:Int): Flow<Pet> = flow {
         emit(
             Pet(
-                141983,
+                petId,
                 "Мухтар",
                 "Мальчик",
                 3,

@@ -11,9 +11,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="444c9b8d-596f-4580-bad1-f9974c1c5534" name="Default Changelist" comment="DB is visible from Hilt">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/data/db/AppDb.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/data/db/AppDb.kt" afterDir="false" />
+    <list default="true" id="444c9b8d-596f-4580-bad1-f9974c1c5534" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/data/repositoies/PetsListRepo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/data/repositoies/PetsListRepo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615627004639</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="DB is visible from Hilt">
+      <created>1615627199898</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615627199898</updated>
+    </task>
+    <task id="LOCAL-00007" summary="PetsDao is visible from Hilt">
+      <created>1615627415948</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615627415948</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -217,7 +233,9 @@
     <MESSAGE value="fragment_pets_list.xml fix" />
     <MESSAGE value="DB is now visible from Hilt" />
     <MESSAGE value="List fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="List fix" />
+    <MESSAGE value="DB is visible from Hilt" />
+    <MESSAGE value="PetsDao is visible from Hilt" />
+    <option name="LAST_COMMIT_MESSAGE" value="PetsDao is visible from Hilt" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1431" y="531" key="#Configure_Path_Variables" timestamp="1615615911964">
@@ -244,11 +262,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="749" y="309" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615583835803" />
-    <state x="492" y="188" width="1180" height="827" key="CommitChangelistDialog2" timestamp="1615627141286">
+    <state x="492" y="188" width="1180" height="827" key="CommitChangelistDialog2" timestamp="1615627415326">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="369" y="140" width="1180" height="827" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1615584569770" />
-    <state x="492" y="188" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1615627141286" />
+    <state x="492" y="188" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1615627415326" />
     <state x="123" y="124" width="2315" height="1153" key="DiffContextDialog" timestamp="1615626856473">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -278,11 +296,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="224" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615579589979" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1615627018048">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1615627418430">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1615577393487" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615627018048" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615627418430" />
     <state x="776" y="297" key="chooseDestDirectoryDialog" timestamp="1615579747147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -291,10 +309,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615585837236" />
-    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615626647493">
+    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615627398377">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615626647493" />
+    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615627398377" />
     <state x="698" y="418" key="git4idea.ui.GitStashDialog" timestamp="1615579430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
