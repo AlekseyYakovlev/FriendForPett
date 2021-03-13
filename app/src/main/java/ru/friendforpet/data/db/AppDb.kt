@@ -18,7 +18,7 @@ abstract class AppDb : RoomDatabase() {
     abstract fun petsDao():PetsDao
 
     companion object{
-        private const val DATA_BASE_NAME = "Pets_Data_Base.db"
+        const val DATA_BASE_NAME = "Pets_Data_Base.db"
         const val TABLE_NAME = "Pets_Table"
 
         @Volatile

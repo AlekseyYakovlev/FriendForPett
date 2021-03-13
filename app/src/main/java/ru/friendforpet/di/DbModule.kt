@@ -22,8 +22,7 @@ class DbModule {
             .databaseBuilder(
                 context,
                 AppDb::class.java,
-                "someName"
-               // AppDb.DATABASE_NAME
+                AppDb.DATA_BASE_NAME
             )
             .fallbackToDestructiveMigration()
             .build()
