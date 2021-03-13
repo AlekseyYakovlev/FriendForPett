@@ -75,5 +75,7 @@
         <item quantity="one">%d год</item>
         <item quantity="few">%d года</item>
         <item quantity="many">%d лет</item>
+        <item quantity="other">%d года</item>
+
     </plurals>
 </resources>

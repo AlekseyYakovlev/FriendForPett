@@ -1,15 +1,11 @@
 package ru.friendforpet.ui.pets_list
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewTreeObserver
-import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -42,6 +38,10 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             setHasFixedSize(true)
         }
 
+        vb.filterExtendedFab.setOnClickListener {
+            navigator.navigateTo(Navigator.Destination.FILTER_FRAGMENT)
+        }
+
         lifecycleScope.launchWhenStarted {
             Timber.tag("1234567").d("launchWhenStarted")
             viewModel.getListFlow().collectLatest(::renderData)
@@ -61,7 +61,12 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             viewHolderBinder = { holder, itemData ->
                 with(holder) {
                     ivPhoto.load(itemData.photo)
-                    val temp = "${itemData.name}: ${itemData.age.toString()}"
+                    val ageStr = resources.getQuantityString(
+                        R.plurals.pets_list__year,
+                        itemData.age,
+                        itemData.age
+                    )
+                    val temp = "${itemData.name}: $ageStr"
                     tvNameAge.text = temp
                     imageGender.setImageDrawable(
                         if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(
