@@ -27,7 +27,7 @@ class PetsListViewModel @Inject constructor(
     }
 
     fun getListFlow(): Flow<List<PetsItemData>> =
-        petsListRepo.getPetsList()
+        petsListRepo.petsListFlow
             .flowOn(Dispatchers.IO)
             .onEach { Timber.tag("123").d("New Value") }
             .map { list ->

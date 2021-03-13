@@ -47,6 +47,11 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
             vb.detailsPetAboutDecs.text = description
             vb.detailsSexDesc.text = sex
             vb.detailsWeightDesc.text = size
+
+            vb.icLike.isChecked = isLiked
+            vb.icLike.setOnClickListener {
+                viewModel.handleLike(_id, !isLiked)
+            }
         }
     }
 

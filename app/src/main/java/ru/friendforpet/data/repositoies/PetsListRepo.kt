@@ -16,6 +16,10 @@ class PetsListRepo @Inject constructor(
     private val petsDao: PetsDao,
 ) {
 
+    val petsListFlow: Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
+        list.map { it.toPet() }
+    }
+
     suspend fun insertInitialValues() {
         petsDao.insertAll(provideDummyList())
     }
@@ -26,11 +30,6 @@ class PetsListRepo @Inject constructor(
 
     fun getPet(petId: Int): Flow<Pet> =
         petsDao.getPetsByIdFlow(petId).filterNotNull().map { it.toPet() }
-
-
-    fun getPetsList(): Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
-        list.map { it.toPet() }
-    }
 
 
 
