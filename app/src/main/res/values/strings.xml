@@ -66,4 +66,5 @@
     <string name="details_about">About</string>
     <string name="details_adoption">adoption</string>
     <string name="pets_list_filter_fab">Filter</string>
+    <string name="friend_for_pet_toolbar">FRIEND FOR PET</string>
 </resources>

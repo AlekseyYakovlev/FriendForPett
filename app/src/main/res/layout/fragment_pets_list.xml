@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:elevation="6dp"
                 android:fontFamily="@font/michroma"
-                android:text="FRIEND FOR PET"
+                android:text="@string/friend_for_pet_toolbar"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 

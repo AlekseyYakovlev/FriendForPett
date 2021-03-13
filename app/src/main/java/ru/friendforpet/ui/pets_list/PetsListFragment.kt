@@ -1,11 +1,15 @@
 package ru.friendforpet.ui.pets_list
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +34,10 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+
     }
+
+
 
     private fun setupViews() {
         vb.rvPetsList.apply {
