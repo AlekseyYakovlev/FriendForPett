@@ -11,8 +11,12 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="444c9b8d-596f-4580-bad1-f9974c1c5534" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_details/PetsDetailsFragment.kt" afterDir="false" />
+    <list default="true" id="444c9b8d-596f-4580-bad1-f9974c1c5534" name="Default Changelist" comment="PetsDetailsFragment.kt update">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_baseline_female_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_baseline_male_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_list/PetsListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/friendforpet/ui/pets_list/PetsListFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pet_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pet_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +94,9 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aleksey\AndroidStudioProjects\FriendForPet\app\src\main\res\drawable-v24" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\MeSeenDev\AndroidStudioProjects\_tests\FriendForPett\app\src\main\res\drawable" />
     </key>
@@ -227,7 +234,35 @@
       <option name="project" value="LOCAL" />
       <updated>1615628868898</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="PetsDetailsFragment.kt update">
+      <created>1615629393483</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615629393483</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fragment_pet_item.xml updated (margins added)">
+      <created>1615631297244</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615631297244</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fragment_pet_item.xml fix">
+      <created>1615631955083</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615631955083</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fragment_pet_item.xml fix">
+      <created>1615632192680</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1615632192680</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,7 +275,9 @@
     <MESSAGE value="DB is visible from Hilt" />
     <MESSAGE value="PetsDao is visible from Hilt" />
     <MESSAGE value="PetsDetailsFragment.kt update" />
-    <option name="LAST_COMMIT_MESSAGE" value="PetsDetailsFragment.kt update" />
+    <MESSAGE value="fragment_pet_item.xml updated (margins added)" />
+    <MESSAGE value="fragment_pet_item.xml fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fragment_pet_item.xml fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1431" y="531" key="#Configure_Path_Variables" timestamp="1615615911964">
@@ -267,16 +304,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="749" y="309" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615583835803" />
-    <state x="492" y="188" width="1180" height="827" key="CommitChangelistDialog2" timestamp="1615628868321">
+    <state x="985" y="464" width="1180" height="827" key="CommitChangelistDialog2" timestamp="1615634342254">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="369" y="140" width="1180" height="827" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1615584569770" />
-    <state x="492" y="188" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1615628868321" />
-    <state x="123" y="124" width="2315" height="1153" key="DiffContextDialog" timestamp="1615626856473">
+    <state x="985" y="464" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1615634342254" />
+    <state x="123" y="124" width="2315" height="1153" key="DiffContextDialog" timestamp="1615633932829">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615579828040" />
-    <state x="123" y="124" width="2315" height="1153" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1615626856473" />
+    <state x="123" y="124" width="2315" height="1153" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1615633932829" />
     <state width="2516" height="342" key="GridCell.Tab.0.bottom" timestamp="1615626651976">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -301,11 +338,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="224" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615579589979" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1615628871172">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1615632195000">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1615577393487" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615628871172" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615632195000" />
     <state x="776" y="297" key="chooseDestDirectoryDialog" timestamp="1615579747147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -314,10 +351,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615585837236" />
-    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615629054251">
+    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1615634318871">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615629054251" />
+    <state x="1663" y="560" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1615634318871" />
     <state x="698" y="418" key="git4idea.ui.GitStashDialog" timestamp="1615579430985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

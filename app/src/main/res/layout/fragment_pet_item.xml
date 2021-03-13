@@ -100,7 +100,7 @@
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_item"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
-                app:srcCompat="@drawable/ic_male" />
+                app:srcCompat="@drawable/ic_baseline_male_24" />
 
 
 

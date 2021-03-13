@@ -62,11 +62,11 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                     imageGender.setImageDrawable(
                         if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(
                             imageGender.context.resources,
-                            R.drawable.ic_female,
+                            R.drawable.ic_baseline_female_24,
                             null
                         ) else ResourcesCompat.getDrawable(
                             imageGender.context.resources,
-                            R.drawable.ic_male,
+                            R.drawable.ic_baseline_male_24,
                             null
                         )
                     )
