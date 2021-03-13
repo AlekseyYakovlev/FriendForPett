@@ -14,6 +14,12 @@
     <color name="color_text">#51504B</color>
     <color name="text_shape">#CCFFFFFF</color>
 
+    <color name="filled_boxs">#e0e0e0</color>
+    <color name="filled_boxs_head_text">#060402</color>
+    <color name="filled_boxs_text">#060402</color>
+    <color name="filled_boxs_stroke_focusable">#E26901</color>
+    <color name="filled_boxs_stroke">#060402</color>
+
 
 
 

@@ -76,4 +76,26 @@
         <item name="android:backgroundTint">@color/white</item>
     </style>
 
+
+    <style name="Theme.FriendForPet.Welcome" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="hintTextAppearance">@style/HintText</item>
+
+        <item name="endIconDrawable">@drawable/ic_round_location_on_24</item>
+
+        <item name="iconTint">@null</item>
+
+
+        <item name="helperTextEnabled">true</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="cornerSize">16dp</item>
+
+        <item name="boxStrokeColor">@color/colorAccent</item> <!-- ЦВЕТ ОКРУЖАЮЩЕЙ ЛИНИИ -->
+        <item name="hintTextColor">@color/filled_boxs_head_text</item>  <!-- Цвет текста в верху-->
+        <item name="android:textColorHint">@color/color_text</item> <!-- Цвет текста снизу-->
+    </style>
+    <style name="HintText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/filled_boxs_stroke_focusable</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
