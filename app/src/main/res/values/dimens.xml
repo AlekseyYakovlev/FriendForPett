@@ -2,4 +2,7 @@
 <resources>
     <dimen name="textView_margin_top">15dp</dimen>
     <dimen name="spinner_margin_top">5dp</dimen>
+
+    <item name="card_image_overlap" format="float" type="dimen">0.28</item>
+
 </resources>

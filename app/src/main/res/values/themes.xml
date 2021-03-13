@@ -18,7 +18,46 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeBottomLeft">60dp</item>
         <item name="cornerSizeBottomRight">60dp</item>
+    </style>
+
+    <style name="MainItem.MaterialCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_gravity">center</item>
+        <item name="cardBackgroundColor">@android:color/holo_red_dark</item>
+        <item name="elevation">6dp</item>
+        <item name="cardCornerRadius">30dp</item>
 
     </style>
 
+
+    <style name="DetailItem.NameText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">20</item>
+    </style>
+
+
+    <style name="DetailItem.TitleText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">20</item>
+    </style>
+
+
+    <style name="DetailItem.DescText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">20</item>
+    </style>
+
+
+    <style name="DetailItem.AboutText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorPrimaryVariant</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
