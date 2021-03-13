@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,12 +13,13 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/details_pet_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_un_top"
             app:shapeAppearanceOverlay="@style/Theme.FriendForPet.ImageViewDetails"
             app:srcCompat="@drawable/image_sample_delails" />
 
@@ -40,6 +40,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="@dimen/card_image_overlap" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_un_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="@dimen/card_image_up_overlap" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_start"
@@ -113,14 +119,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:text="@string/details_sex"
                     app:layout_constraintBottom_toTopOf="@+id/details_sex_desc"
                     app:layout_constraintEnd_toStartOf="@id/details_age_title"
                     app:layout_constraintStart_toStartOf="@id/guideline_start_card"
-                    app:layout_constraintTop_toBottomOf="@+id/guideline_top_card"
-                    tools:text="SEX" />
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_top_card" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/details_sex_desc"
+                    style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -128,7 +135,6 @@
                     app:layout_constraintEnd_toStartOf="@id/details_age_desc"
                     app:layout_constraintStart_toStartOf="@id/guideline_start_card"
                     app:layout_constraintTop_toBottomOf="@+id/details_sex_title"
-style="@style/DetailItem.DescText"
                     tools:text="secd" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -137,14 +143,15 @@ style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:text="@string/details_weight"
                     app:layout_constraintBottom_toTopOf="@+id/details_weight_desc"
                     app:layout_constraintEnd_toStartOf="@+id/details_color_title"
                     app:layout_constraintStart_toStartOf="@id/guideline_start_card"
-                    app:layout_constraintTop_toBottomOf="@+id/details_sex_desc"
-                    tools:text="SEX" />
+                    app:layout_constraintTop_toBottomOf="@+id/details_sex_desc" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/details_weight_desc"
+                    style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
@@ -153,7 +160,6 @@ style="@style/DetailItem.DescText"
                     app:layout_constraintEnd_toStartOf="@id/details_color_desc"
                     app:layout_constraintStart_toStartOf="@id/guideline_start_card"
                     app:layout_constraintTop_toBottomOf="@+id/details_weight_title"
-                    style="@style/DetailItem.DescText"
                     tools:text="decs" />
 
 
@@ -163,19 +169,18 @@ style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-
+                    android:text="@string/details_age"
                     app:layout_constraintBottom_toTopOf="@+id/details_age_desc"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end_card"
                     app:layout_constraintStart_toEndOf="@id/details_sex_title"
-                    app:layout_constraintTop_toBottomOf="@+id/guideline_top_card"
-                    tools:text="SEX" />
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_top_card" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/details_age_desc"
+                    style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    style="@style/DetailItem.DescText"
                     app:layout_constraintBottom_toTopOf="@+id/details_color_title"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end_card"
                     app:layout_constraintStart_toEndOf="@id/details_sex_desc"
@@ -184,11 +189,11 @@ style="@style/DetailItem.DescText"
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/details_color_desc"
+                    style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
                     android:gravity="start"
-                    style="@style/DetailItem.DescText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end_card"
 
@@ -202,11 +207,12 @@ style="@style/DetailItem.DescText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:text="@string/details_color"
                     app:layout_constraintBottom_toTopOf="@+id/details_color_desc"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end_card"
                     app:layout_constraintStart_toEndOf="@id/details_weight_title"
                     app:layout_constraintTop_toBottomOf="@+id/details_age_desc"
-                    tools:text="SEX" />
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -227,14 +233,14 @@ style="@style/DetailItem.DescText"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/details_card"
-            tools:text="About" />
+            android:text="@string/details_about"/>
 
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/details_pet_about_decs"
-            android:layout_width="0dp"
             style="@style/DetailItem.AboutText"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="34dp"
             android:layout_marginEnd="30dp"
@@ -245,10 +251,17 @@ style="@style/DetailItem.DescText"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/details_pet_about"
-            tools:text="@string/lorem" />
+            android:text="@string/lorem" />
+
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 </androidx.core.widget.NestedScrollView>

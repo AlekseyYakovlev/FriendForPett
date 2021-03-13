@@ -2,6 +2,7 @@ package ru.friendforpet.ui.pets_list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -56,9 +57,19 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             viewHolderBinder = { holder, itemData ->
                 with(holder) {
                     ivPhoto.load(itemData.photo)
-                    tvName.text = itemData.name
-                    tvAge.text = itemData.age.toString()
-                    tvGender.text = itemData.sex
+                    val temp = "${itemData.name}: ${itemData.age.toString()}"
+                    tvNameAge.text = temp
+                    imageGender.setImageDrawable(
+                        if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(
+                            imageGender.context.resources,
+                            R.drawable.ic_female,
+                            null
+                        ) else ResourcesCompat.getDrawable(
+                            imageGender.context.resources,
+                            R.drawable.ic_male,
+                            null
+                        )
+                    )
 
                     root.setOnClickListener {
                         navigator.navigateTo(

@@ -3,5 +3,6 @@
 
 
     <item name="card_image_overlap" format="float" type="dimen">0.20</item>
+    <item name="card_image_up_overlap" format="float" type="dimen">0.26</item>
 
 </resources>
