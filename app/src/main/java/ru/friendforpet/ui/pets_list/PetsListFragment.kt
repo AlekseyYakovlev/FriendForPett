@@ -34,10 +34,7 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-
     }
-
-
 
     private fun setupViews() {
         vb.rvPetsList.apply {
@@ -80,7 +77,8 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                     icLike.isChecked = itemData.isLiked
                     Timber.tag("123").d("${itemData.name} ${itemData.isLiked}")
                     icLike.setOnClickListener {
-                        viewModel.handleLike(itemData._id,!itemData.isLiked)
+                        Timber.tag("123").d(" handleLike ${itemData.name} ${!itemData.isLiked}")
+                        viewModel.handleLike(itemData._id, !itemData.isLiked)
                     }
 
                     root.setOnClickListener {

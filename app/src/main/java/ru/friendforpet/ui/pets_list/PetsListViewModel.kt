@@ -60,5 +60,5 @@ fun Pet.toPetItemData() = PetsItemData(
     tags = tags,
     addedDate = addedDate,
     photo = photo,
-    isLiked = false,
+    isLiked = isLiked,
 )
