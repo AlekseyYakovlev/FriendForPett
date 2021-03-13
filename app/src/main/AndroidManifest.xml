@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendForPet">
-        <activity android:name="ru.friendforpet.ui.RootActivity">
+        <activity android:name="ru.friendforpet.ui.RootActivity"
+            android:screenOrientation="portrait"> <!-- Временно пока нет спес слоёв-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

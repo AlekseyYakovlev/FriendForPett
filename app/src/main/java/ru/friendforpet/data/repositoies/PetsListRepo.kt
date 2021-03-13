@@ -146,29 +146,22 @@ class PetsListRepo @Inject constructor(
 
 /**
  * Структура БД
- *
- * city - "Moscow"
- *
+ * @param city - "Moscow"
  * @param animalType
  * 1 - Cat
  * 2 - Dog
- *
  * @param gender
  * 1 - Girl
  * 2 - Boy
- *
  * @param age -
  * 3 Int
- *
  * @param animalSize
  * 1 - small
  * 2 - middle
  * 3 - Big
- *
  * @param animalFurr
  * 1 - Long hair
  * 2 - short hair
- *
  * @param color
  * 1 - Черный
  * 2 - коричневый
@@ -177,7 +170,6 @@ class PetsListRepo @Inject constructor(
  * 5 - песочный
  * 7 - белый
  * 8 - дымчатый
- *
  * @param character
  * 1 - Calm
  * 2 - Active
