@@ -95,6 +95,7 @@
     </style>
     <style name="HintText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/filled_boxs_stroke_focusable</item>
+        <item name="android:fontStyle" tools:targetApi="o">@font/rubik</item>
         <item name="android:textSize">14sp</item>
     </style>
 
