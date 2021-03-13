@@ -26,7 +26,7 @@
                 android:elevation="6dp"
                 android:fontFamily="@font/michroma"
                 android:text="@string/friend_for_pet_toolbar"
-                android:textColor="@color/black"
+                android:textColor="@color/color_text"
                 android:textSize="20sp" />
 
             <androidx.appcompat.widget.Toolbar

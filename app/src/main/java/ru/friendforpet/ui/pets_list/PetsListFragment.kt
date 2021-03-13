@@ -66,7 +66,7 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                         itemData.age,
                         itemData.age
                     )
-                    val temp = "${itemData.name}: $ageStr"
+                    val temp = "${itemData.name}: $ageStr ${System.lineSeparator()}${itemData.color}"
                     tvNameAge.text = temp
                     imageGender.setImageDrawable(
                         if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(

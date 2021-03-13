@@ -73,7 +73,7 @@
     </style>
 
     <style name="Theme.FriendForPet.PetsList.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:backgroundTint">@color/toolbar_color</item>
     </style>
 
 

@@ -54,23 +54,16 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
         val strokeSize = resources.getDimension(R.dimen.card_stroke_pik).toInt()
         lifecycleScope.launch {
             viewModel.isCatPicked.collectLatest {
-                Log.d("TAG", "onViewCreated: CAT $it ${vb.cvDog.strokeWidth}")
                 vb.cvCat.isChecked = it
                 vb.cvCat.strokeWidth = if (it) strokeSize else 0
-
-
             }
         }
         lifecycleScope.launch {
             viewModel.isDogPicked.collectLatest {
-                Log.d("TAG", "onViewCreated: DOG $it ${vb.cvDog.strokeWidth}")
                 vb.cvDog.isChecked = it
                 vb.cvDog.strokeWidth = if (it) strokeSize else 0
-
             }
         }
-
-
     }
 
 

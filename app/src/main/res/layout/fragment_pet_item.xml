@@ -50,6 +50,8 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_end="16dp" />
 
+
+
             <ImageView
                 android:id="@+id/iv_photo"
                 android:layout_width="match_parent"
@@ -64,15 +66,24 @@
                 app:layout_constraintVertical_bias="0.0"
                 tools:srcCompat="@tools:sample/avatars" />
 
+
+            <FrameLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:elevation="4dp"
+                android:background="@drawable/item_text_shape"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
+                app:layout_constraintStart_toStartOf="@+id/imageGender"
+                app:layout_constraintTop_toTopOf="@id/guideline_top_item">
+
+
             <ru.friendforpet.ui.custom.CheckableImageView
                 android:id="@+id/ic_like"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
-                app:layout_constraintStart_toStartOf="@+id/imageGender"
-                app:layout_constraintTop_toTopOf="@id/guideline_top_item"
+              android:layout_gravity="center"
                 android:src="@drawable/like_states" />
-
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tvNameAge"
@@ -80,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_text_shape"
                 android:ellipsize="end"
+                android:textColor="@color/color_text"
                 android:fontFamily="@font/rubik_medium"
                 android:gravity="start"
                 android:maxLines="2"
