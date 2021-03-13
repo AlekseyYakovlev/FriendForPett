@@ -8,7 +8,9 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/bt_clean"
+        android:layout_width="wrap_content"
+        android:layout_gravity="end"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -28,14 +30,14 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_location"
+        android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/your_location" />
 
     <Spinner
-        android:id="@+id/spinnerCity"
+        android:id="@+id/sp_location"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,98 +45,98 @@
         />
 
     <TextView
-        android:id="@+id/text_whom_search"
+        android:id="@+id/tv_pet_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/whom_search_text" />
 
     <Spinner
-        android:id="@+id/spinnerWhom"
+        android:id="@+id/sp_pet_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/whomSearch" />
 
     <TextView
-        android:id="@+id/text_sex_pet"
+        android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/sex_of_pet_text" />
 
     <Spinner
-        android:id="@+id/sexPet"
+        android:id="@+id/sp_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/sexOfPet" />
 
     <TextView
-        android:id="@+id/text_age_pet"
+        android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/age_of_pet_text" />
 
     <Spinner
-        android:id="@+id/agePet"
+        android:id="@+id/sp_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/agePet" />
 
     <TextView
-        android:id="@+id/text_size_pet"
+        android:id="@+id/tv_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/size_of_pet_text" />
 
     <Spinner
-        android:id="@+id/sizePet"
+        android:id="@+id/sp_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/sizePet" />
 
     <TextView
-        android:id="@+id/text_personality_pet"
+        android:id="@+id/tv_personality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/personality_of_pet_text" />
 
     <Spinner
-        android:id="@+id/personalityPet"
+        android:id="@+id/sp_personality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/personalityPet" />
 
     <TextView
-        android:id="@+id/text_hair_pet"
+        android:id="@+id/tv_hair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/hair_of_pet_text" />
 
     <Spinner
-        android:id="@+id/hairPet"
+        android:id="@+id/sp_hair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
         android:entries="@array/hairPet" />
 
     <TextView
-        android:id="@+id/text_color_pet"
+        android:id="@+id/tv_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/textView_margin_top"
         android:text="@string/color_of_pet_text" />
 
     <Spinner
-        android:id="@+id/colorPet"
+        android:id="@+id/sp_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spinner_margin_top"
