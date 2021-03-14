@@ -24,6 +24,7 @@ class PetsListRepo @Inject constructor(
 
     suspend fun insertInitialValues() {
         petsDao.insertAll(provideDummyList())
+        //getPetsFromNet()
     }
 
     suspend fun updateIsLiked(petId: Int, isLiked: Boolean) {
@@ -34,14 +35,12 @@ class PetsListRepo @Inject constructor(
         petsDao.getPetsByIdFlow(petId).filterNotNull().map { it.toPet() }
 
     suspend fun getPetsFromNet() {
-        var petsFromNet = network.getPets()
         try {
-
+            val petsFromNet = network.getPets()
+            petsDao.insertAll(petsFromNet.toPetsList())
         } catch (e: Exception) {
             Timber.tag("123 PetsListRepo").e(e.message)
         }
-        petsFromNet.toPetsList()
-
     }
 
 
@@ -56,9 +55,12 @@ class PetsListRepo @Inject constructor(
             "Дружелюбная",
             "Длинношерстная",
             "Черно-рыжий",
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n" +
-                    "        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n" +
-                    "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
+            "Нежный и воздушный артист балета Тризор ищет дом! \r\n\r\n" +
+                    "Мальчишки бывают самые разные: и хулиганистые, и гиперактивные, и хитренькие, но всё это – не про Тризора. Этот мальчик мягкий, как облачко, ласковый, как тёплый лучик солнца, нежный, как первый весенний цветок, добродушный и дружелюбный ребёнок.\r\n\r\n" +
+                    "Тризор – чемпион по обнимашкам и целовашкам, и сам обнимет, и других научит, как правильно делиться теплом и радостью. Почему же артист балета? У нашего Тризорчика с рождения ножки поставлены в красивую первую позицию. \r\n\r\n" +
+                    "Весь образ Тризора овеян этой неуловимо притягательной артистической романтикой: таинственная полуулыбка, выразительный взгляд, изящные движения ушек и хвостика… Мальчик будто парит, а не просто идёт по земле, с ним легко и комфортно гулять: он не тянет поводок, дружелюбен и спокоен с другими собаками. Громкие звуки, машины или что-либо ещё Тризора не пугают, он супер-контактный и абсолютно беспроблемный!\r\n\r\n" +
+                    "Тризора можно спокойно взять в семью, даже если раньше у Вас вообще не было опыта общения с собаками! .Поведение у мальчика на 5+, не нужна никакая корректировка, а если возникнет желание научить Тризорчика командам – наш танцующий красавец с радостью откроется чему-то новому.\r\n\r\n" +
+                    "Тризор дарит всем вокруг свет, радость и вдохновение, как настоящий артист, бескорыстно и от всей своей солнечной души.",
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
@@ -173,9 +175,9 @@ class PetsListRepo @Inject constructor(
 
 }
 
-private fun PetsResponse.toPetsList(): List<PetEntity> {
+private fun PetsResponse.toPetsList(): List<PetEntity> =
 
-    return map {
+     map {
         PetEntity(
             _id = it.id,
             name = it.name,
@@ -206,14 +208,14 @@ private fun PetsResponse.toPetsList(): List<PetEntity> {
                 8 -> "Дымчатый"
                 else -> "Черный"
             },
-            description = "",
-            tags = listOf(),
+            description = it.description,
+            tags = emptyList(),
             addedDate = "",
-            photo = "",
+            photo = it.photos.first(),
             isLiked = false,
             type = if (it.pet == 1) "Кошка" else "Собака",
         )
-    }
+
 }
 
 
