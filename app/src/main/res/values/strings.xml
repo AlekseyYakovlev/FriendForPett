@@ -74,11 +74,11 @@
     <string name="details_weight">Вес</string>
     <string name="details_color">Цвет</string>
     <string name="details_about">О Животном</string>
-    <string name="details_adoption">adoption</string>
-    <string name="pets_list_filter_fab">Filter</string>
-    <string name="pets_list_filter_bottom_sheet">Filters</string>
+    <string name="details_adoption">Взять питомца</string>
+    <string name="pets_list_filter_fab">Фильтры</string>
+    <string name="pets_list_filter_bottom_sheet">Фильтры</string>
     <string name="friend_for_pet_toolbar">FRIEND FOR PET</string>
-    <string name="submit">submit</string>
+    <string name="submit">Далее</string>
     <string name="welcome_text">Добро пожаловать!</string>
     <string name="welcome_question">Пожалуйста выберите какого питомца вы хотите взять</string>
     <string name="welcome_drop_down_error">Выберите город</string>
