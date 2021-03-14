@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import coil.metadata
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.friendforpet.Navigator
@@ -60,7 +61,9 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             },
             viewHolderBinder = { holder, itemData ->
                 with(holder) {
-                    ivPhoto.load(itemData.photo)
+                    ivPhoto.load(itemData.photo){
+                        placeholder(R.drawable.placeholder)
+                    }
                     val ageStr = resources.getQuantityString(
                         R.plurals.pets_list__year,
                         itemData.age,

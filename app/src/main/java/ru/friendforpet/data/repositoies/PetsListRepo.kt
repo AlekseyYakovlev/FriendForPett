@@ -180,20 +180,30 @@ private fun PetsResponse.toPetsList(): List<PetEntity> {
                 else -> "Москва"
             },
             size = when (it.cityId) {
-                1 -> "Санкт-Петербург"
-                2 -> "Казань"
-                3 -> "Краснодар"
-                else -> "Москва"
+                1 -> "Маленький"
+                2 -> "Средний"
+                3 -> "Большой"
+                else -> "Средний"
             },
-            personality = "",
-            hair = "",
-            color = "",
+            personality = if (it.petCharacter == 1) "Спокойный" else "Активный",
+            hair = if (it.furr == 1) "Длинная" else "Короткая",
+            color = when (it.color) {
+                1 -> "Черный"
+                2 -> "Коричневый"
+                3 -> "Бежевый"
+                4 -> "Рыжий"
+                5 -> "Песочный"
+
+                7 -> "Белый"
+                8 -> "Дымчатый"
+                else -> "Черный"
+            },
             description = "",
             tags = listOf(),
             addedDate = "",
             photo = "",
             isLiked = false,
-            type = ""
+            type = if (it.pet == 1) "Кошка" else "Собака",
         )
     }
 }
