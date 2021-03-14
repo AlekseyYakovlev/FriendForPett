@@ -6,12 +6,16 @@ import kotlinx.coroutines.flow.map
 import ru.friendforpet.data.db.AppDb
 import ru.friendforpet.data.db.daos.PetsDao
 import ru.friendforpet.data.db.entities.PetEntity
+import ru.friendforpet.data.remote.RestService
+import ru.friendforpet.data.remote.resp.PetsResponse
 import ru.friendforpet.model.Pet
+import timber.log.Timber
 import javax.inject.Inject
 
 class PetsListRepo @Inject constructor(
     private val db: AppDb,
     private val petsDao: PetsDao,
+    private val network: RestService,
 ) {
 
     val petsListFlow: Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
@@ -29,14 +33,24 @@ class PetsListRepo @Inject constructor(
     fun getPet(petId: Int): Flow<Pet> =
         petsDao.getPetsByIdFlow(petId).filterNotNull().map { it.toPet() }
 
+    suspend fun getPetsFromNet() {
+        var petsFromNet = network.getPets()
+        try {
+
+        } catch (e: Exception) {
+            Timber.tag("123 PetsListRepo").e(e.message)
+        }
+        petsFromNet.toPetsList()
+
+    }
 
 
     private fun provideDummyList(): List<PetEntity> = listOf(
         PetEntity(
-            141983,
-            "Мухтар",
+            1,
+            "Тризор",
             "Мальчик",
-            3,
+            5,
             "Москва",
             "Большая",
             "Дружелюбная",
@@ -49,7 +63,7 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            "https://www.friendforpet.ru/api/sites/default/files/2021-01/8tAR8nMAcLc.jpg",
             false,
             "Собака"
         ),
@@ -68,7 +82,7 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            "https://www.friendforpet.ru/api/sites/default/files/2021-01/_5adN7drnuw.jpg",
             false,
             "Собака"
         ),
@@ -87,7 +101,7 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            "https://www.friendforpet.ru/api/sites/default/files/2021-01/kIHxO7Wc2Hs.jpg",
             false,
             "Собака"
         ),
@@ -106,7 +120,8 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",type = "Собака"
+            "https://www.friendforpet.ru/api/sites/default/files/2021-01/s2lr9rjx8KI.jpg",
+            type = "Собака"
         ),
         PetEntity(
             141987,
@@ -123,7 +138,7 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
+            "https://www.friendforpet.ru/api/sites/default/files/2021-02/%D0%9F%D0%BE%D0%BF%D0%BE%D0%BD%D0%BA%D0%B0.jpg",
             false,
             "Кошка"
         )
@@ -148,6 +163,39 @@ class PetsListRepo @Inject constructor(
     )
 
 
+}
+
+private fun PetsResponse.toPetsList(): List<PetEntity> {
+
+    return map {
+        PetEntity(
+            _id = it.id,
+            name = it.name,
+            sex = if (it.gender == 1) "Девочка" else "Мальчик",
+            age = it.age,
+            location = when (it.cityId) {
+                1 -> "Санкт-Петербург"
+                2 -> "Казань"
+                3 -> "Краснодар"
+                else -> "Москва"
+            },
+            size = when (it.cityId) {
+                1 -> "Санкт-Петербург"
+                2 -> "Казань"
+                3 -> "Краснодар"
+                else -> "Москва"
+            },
+            personality = "",
+            hair = "",
+            color = "",
+            description = "",
+            tags = listOf(),
+            addedDate = "",
+            photo = "",
+            isLiked = false,
+            type = ""
+        )
+    }
 }
 
 
@@ -193,22 +241,24 @@ data class Filters(
 ) {
     companion object {
 
-        const val FILTER_LOCATION ="location"
-        const val FILTER_ANIMAL_TYPE ="type"
-        const val FILTER_AGE ="age"
-        const val FILTER_GENDER ="gender"
-        const val FILTER_ANIMAL_SIZE ="animalSize"
-        const val FILTER_ANIMAL_FURR ="animalFurr"
-        const val FILTER_COLOR ="color"
-        const val FILTER_CHARACTER ="character"
+        const val FILTER_LOCATION = "location"
+        const val FILTER_ANIMAL_TYPE = "type"
+        const val FILTER_AGE = "age"
+        const val FILTER_GENDER = "gender"
+        const val FILTER_ANIMAL_SIZE = "animalSize"
+        const val FILTER_ANIMAL_FURR = "animalFurr"
+        const val FILTER_COLOR = "color"
+        const val FILTER_CHARACTER = "character"
 
         fun getMockInstance(age: List<String>? = null): Filters = Filters(
             animalType = getAnimalType(),
             age = age,
-            location = listOf("Москва",
+            location = listOf(
+                "Москва",
                 "Санкт-Петербург",
                 "Казань",
-                "Краснодар"),
+                "Краснодар"
+            ),
             gender = getGender(),
             animalSize = getAnimalSize(),
             animalFurr = getAnimalFurr(),
