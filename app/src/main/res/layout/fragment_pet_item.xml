@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="220dp"
     android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
     android:layout_marginTop="8dp"
-    android:layout_height="220dp">
+    android:layout_marginEnd="16dp">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/MainItem.MaterialCardView"
@@ -51,7 +51,6 @@
                 app:layout_constraintGuide_end="16dp" />
 
 
-
             <ImageView
                 android:id="@+id/iv_photo"
                 android:layout_width="match_parent"
@@ -68,22 +67,28 @@
 
 
             <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:elevation="4dp"
                 android:background="@drawable/item_text_shape"
+                android:elevation="4dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
                 app:layout_constraintStart_toStartOf="@+id/imageGender"
-                app:layout_constraintTop_toTopOf="@id/guideline_top_item">
-
+                app:layout_constraintTop_toTopOf="@id/guideline_top_item"></FrameLayout>
 
             <ru.friendforpet.ui.custom.CheckableImageView
                 android:id="@+id/ic_like"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-              android:layout_gravity="center"
-                android:src="@drawable/like_states" />
-            </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:elevation="4dp"
+                android:src="@drawable/like_states"
+                app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout"
+                app:layout_constraintTop_toTopOf="@+id/guideline_top_item" />
+
 
             <TextView
                 android:id="@+id/tvNameAge"
@@ -91,7 +96,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_text_shape"
                 android:ellipsize="end"
-                android:textColor="@color/color_text"
                 android:fontFamily="@font/rubik_medium"
                 android:gravity="start"
                 android:maxLines="2"
@@ -99,6 +103,7 @@
                 android:paddingTop="8dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="8dp"
+                android:textColor="@color/color_text"
                 app:layout_constraintBottom_toBottomOf="@+id/imageGender"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_item"
                 app:layout_constraintTop_toTopOf="@+id/imageGender"
@@ -113,13 +118,6 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_item"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_end_item"
                 app:srcCompat="@drawable/ic_baseline_male_24" />
-
-
-
-
-
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
