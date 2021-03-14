@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="40dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/bottom_sheet_shape">
 
@@ -49,14 +50,12 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/siv_contact_photo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:minHeight="200dp"
-            android:maxHeight="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_sample_delails"
+            android:src="@drawable/img_kruzenshtern"
             app:layout_constraintDimensionRatio="1:1"
             app:shapeAppearanceOverlay="@style/Theme.FriendForPet.BottomSheet.Photo"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
@@ -75,7 +74,8 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/siv_contact_photo"
-            tools:text="Say my name" />
+            android:text="@string/lorem_name"
+             />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -92,7 +92,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_contact_name"
-            tools:text="Say my location in la la la la " />
+            android:text="@string/lorem_location" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -105,12 +105,15 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:autoLink="all"
+            android:textColorLink="@color/colorAccent"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_contact_location"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toEndOf="@+id/guideline_start"
             app:layout_constraintBottom_toTopOf="@+id/tv_desc"
-            tools:text="8 800 555-35-35" />
+            android:text="@string/lorem_phone"
+            />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -126,7 +129,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toEndOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_contact_phone"
-            tools:text="@string/lorem" />
+            android:text="@string/lorem_abc" />
 
 
 

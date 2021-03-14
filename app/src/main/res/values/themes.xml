@@ -115,6 +115,8 @@
 
     <style name="mBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
+        <item name="behavior_peekHeight">1500dp</item>
+
     </style>
 
 </resources>

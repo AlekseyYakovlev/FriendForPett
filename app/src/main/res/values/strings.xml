@@ -65,6 +65,11 @@
         <item>Белый</item>
         <item>Дымчатый</item>
     </string-array>
+    <string name="lorem_abc">
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>
+
+    </string>
 
     <string name="lorem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br/><br/>
@@ -73,7 +78,7 @@
     <string name="details_age">Возраст</string>
     <string name="details_weight">Вес</string>
     <string name="details_color">Цвет</string>
-    <string name="details_about">О Животном</string>
+    <string name="details_about">Описание:</string>
     <string name="details_adoption">Взять питомца</string>
     <string name="pets_list_filter_fab">Фильтры</string>
     <string name="pets_list_filter_bottom_sheet">Фильтры</string>
@@ -83,6 +88,9 @@
     <string name="welcome_question">Пожалуйста выберите какого питомца вы хотите взять</string>
     <string name="welcome_drop_down_error">Выберите город</string>
     <string name="pick_animal_type">Выберите тип животного</string>
+    <string name="lorem_name">Иван Фёдорович Крузенштерн</string>
+    <string name="lorem_location">Черное море 43.432, 35.714</string>
+    <string name="lorem_phone">8 800 555-35-35</string>
 
     <plurals name="pets_list__year">
         <item quantity="one">%d год</item>

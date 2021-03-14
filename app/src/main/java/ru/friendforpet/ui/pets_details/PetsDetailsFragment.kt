@@ -36,6 +36,7 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
 
         vb.materialButton.setOnClickListener {
             val modalBottomSheet = AdoptionBottomSheet()
+
             modalBottomSheet.show(requireActivity().supportFragmentManager, AdoptionBottomSheet.TAG)
         }
 
