@@ -13,6 +13,7 @@ import ru.friendforpet.Navigator
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetDetaisBinding
 import ru.friendforpet.model.Pet
+import ru.friendforpet.ui.adoption.AdoptionBottomSheet
 import ru.friendforpet.ui.utils.viewBinding
 import javax.inject.Inject
 
@@ -31,6 +32,11 @@ class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {
     private fun setupViews(petId: Int) {
         vb.detailsNavBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        vb.materialButton.setOnClickListener {
+            val modalBottomSheet = AdoptionBottomSheet()
+            modalBottomSheet.show(requireActivity().supportFragmentManager, AdoptionBottomSheet.TAG)
         }
 
         lifecycleScope.launchWhenStarted {
