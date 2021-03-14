@@ -13,6 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
+        <item name="bottomSheetDialogTheme">@style/mBottomSheetDialogTheme</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
@@ -22,6 +24,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeBottomLeft">60dp</item>
         <item name="cornerSizeBottomRight">60dp</item>
+    </style>
+    <style name="Theme.FriendForPet.BottomSheet.Photo" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+        <item name="strokeWidth">4dp</item>
+        <item name="strokeColor">@color/colorAccent</item>
     </style>
 
     <style name="MainItem.MaterialCardView" parent="Widget.MaterialComponents.CardView">
@@ -99,6 +107,14 @@
         <item name="android:textColor">@android:color/holo_red_dark</item>
         <item name="android:fontStyle" tools:targetApi="o">@font/rubik</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="mBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/mBottomSheetStyle</item>
+    </style>
+
+    <style name="mBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

@@ -264,15 +264,16 @@
             android:minWidth="160dp"
             android:text="@string/details_adoption"
             app:backgroundTint="@color/colorAccent"
-            app:cornerRadius="16dp"
+            app:cornerRadius="25dp"
+            android:minHeight="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/details_pet_about_decs"
             app:layout_goneMarginBottom="16dp" />
 
         <FrameLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginEnd="24dp"
             android:elevation="4dp"
             android:background="@drawable/item_text_shape"
