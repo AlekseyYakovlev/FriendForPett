@@ -2,13 +2,11 @@ package ru.friendforpet.data.repositoies
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import ru.friendforpet.data.db.AppDb
 import ru.friendforpet.data.db.daos.PetsDao
 import ru.friendforpet.data.db.entities.PetEntity
 import ru.friendforpet.model.Pet
-import ru.friendforpet.ui.pets_list.PetsItemData
 import javax.inject.Inject
 
 class PetsListRepo @Inject constructor(
@@ -46,7 +44,7 @@ class PetsListRepo @Inject constructor(
             "Черно-рыжий",
             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n" +
                     "        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n" +
-                    "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
+                    "        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam estNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
             listOf(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
             ),
@@ -108,9 +106,7 @@ class PetsListRepo @Inject constructor(
                 "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
             ),
             "23.03.2021",
-            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",
-            false,
-            "Собака"
+            "https://avatars.mds.yandex.net/get-marketcms/1357599/img-61abb65d-e207-4e08-8eef-1499fc23b460.jpeg/optimize",type = "Собака"
         ),
         PetEntity(
             141987,
@@ -157,7 +153,7 @@ class PetsListRepo @Inject constructor(
 
 /**
  * Структура БД
- * @param city - "Moscow"
+ * @param location - "Moscow"
  * @param animalType
  * 1 - Cat
  * 2 - Dog
@@ -186,7 +182,7 @@ class PetsListRepo @Inject constructor(
  * 2 - Active
  */
 data class Filters(
-    val city: List<String> = listOf("Moscow"),
+    val location: List<String> = listOf("Moscow"),
     val animalType: Map<String, String> = mutableMapOf(),
     val age: List<String>? = listOf(),
     val gender: Map<String, String> = mutableMapOf(),
@@ -197,7 +193,7 @@ data class Filters(
 ) {
     companion object {
 
-        const val FILTER_CITY ="city"
+        const val FILTER_LOCATION ="location"
         const val FILTER_ANIMAL_TYPE ="type"
         const val FILTER_AGE ="age"
         const val FILTER_GENDER ="gender"
@@ -209,13 +205,17 @@ data class Filters(
         fun getMockInstance(age: List<String>? = null): Filters = Filters(
             animalType = getAnimalType(),
             age = age,
-            city = listOf("Москва","Санкт-Петербург"),
+            location = listOf("Москва",
+                "Санкт-Петербург",
+                "Казань",
+                "Краснодар"),
             gender = getGender(),
             animalSize = getAnimalSize(),
             animalFurr = getAnimalFurr(),
             color = getColor(),
             character = getCharacter()
         )
+
 
         private fun getAnimalType(): Map<String, String> = mapOf(
             "1" to "Кошка",

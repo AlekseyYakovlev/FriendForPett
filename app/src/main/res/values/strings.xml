@@ -80,6 +80,8 @@
     <string name="submit">submit</string>
     <string name="welcome_text">Добро пожаловать!</string>
     <string name="welcome_question">Пожалуйста выберите какого питомца вы хотите взять</string>
+    <string name="welcome_drop_down_error">Выберите город</string>
+    <string name="pick_animal_type">Выберите тип животного</string>
 
     <plurals name="pets_list__year">
         <item quantity="one">%d год</item>

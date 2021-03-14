@@ -2,7 +2,6 @@ package ru.friendforpet.ui.pets_list
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -27,9 +26,7 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
     private val vb by viewBinding(FragmentWelcomeScreenBinding::bind)
 
     private val filter = Filters.getMockInstance()
-    private val mockCityFilterList = filter.city
-    private val mockTypeFilterList = filter.animalType
-
+    private val mockCityFilterList: List<String> = filter.location
 
     @Inject
     lateinit var navigator: Navigator
@@ -42,16 +39,18 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
 
         lifecycleScope.launchWhenCreated {
             vb.acDropdown.onItemClickListener = clickMenuListener
-            vb.acDropdown.setAdapter(
+
+        }
+        vb.acDropdown.setAdapter(
                 ArrayAdapter(
                     view.context,
-                    android.R.layout.simple_list_item_1, mockCityFilterList
+                    android.R.layout.simple_list_item_1, mockCityFilterList)
                 )
-            )
-        }
+        vb.acDropdown.threshold = 100
         vb.cvCat.isCheckable = true
         vb.cvDog.isCheckable = true
         val strokeSize = resources.getDimension(R.dimen.card_stroke_pik).toInt()
+
         lifecycleScope.launch {
             viewModel.isCatPicked.collectLatest {
                 vb.cvCat.isChecked = it
@@ -64,6 +63,9 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
                 vb.cvDog.strokeWidth = if (it) strokeSize else 0
             }
         }
+
+
+
     }
 
 
@@ -73,7 +75,6 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
                 viewModel.apply {
                     viewModel.isCatPicked.value = true
                     viewModel.isDogPicked.value = false
-                    //viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["1"].toString())
                     viewModel.updateFilter("type", "Кошка")
                 }
 
@@ -82,7 +83,6 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
                 viewModel.apply {
                     viewModel.isDogPicked.value = true
                     viewModel.isCatPicked.value = false
-                    //viewModel.updateFilter(FILTER_ANIMAL_TYPE, mockTypeFilterList["2"].toString())
                     viewModel.updateFilter("type", "Собака")
                 }
             }
@@ -93,19 +93,10 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
     private fun setupViews() {
         vb.mbSubmit.setOnClickListener {
             if (vb.acDropdown.text.isBlank()) {
-
-                Snackbar.make(vb.acDropdown, " Выберите город", Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.colorAccent,
-                            null
-                        )
-                    ).setTextColor(
-                        Color.WHITE
-                    ).show()
-
+                showWarning(getString(R.string.welcome_drop_down_error))
                 vb.acDropdown.showDropDown()
+            } else if (!vb.cvCat.isChecked && !vb.cvDog.isChecked) {
+                showWarning(getString(R.string.pick_animal_type))
             } else {
                 navigator.navigateTo(Navigator.Destination.PETS_LIST_FRAGMENT)
             }
@@ -114,10 +105,19 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
 
     }
 
+    private fun showWarning( text: String): Unit =
+        Snackbar.make(vb.acDropdown, text, Snackbar.LENGTH_LONG)
+            .setBackgroundTint(
+                ResourcesCompat.getColor(
+                    resources,
+                    R.color.colorAccent,
+                    null
+                )
+            ).setTextColor(Color.WHITE).show()
+
 
     private val clickMenuListener =
         AdapterView.OnItemClickListener { parent, view, position, id ->
-            viewModel.pickedCity = mockCityFilterList[position]
-            vb.acDropdown.error = null
+            viewModel.updateFilter("location", mockCityFilterList[position]) // нет фильтра по городу в VM
         }
 }

@@ -16,7 +16,7 @@ class PetsListViewModel @Inject constructor(
     private val petsListRepo: PetsListRepo,
 ) : ViewModel() {
 
-    var pickedCity: String = ""
+
 
     private val _filterState = MutableStateFlow(Filter())
 
@@ -114,6 +114,7 @@ class PetsListViewModel @Inject constructor(
 
 data class Filter(
     val location: String = "",
+    val city: String = "",
     val type: String = "",
     val gender: String = "",
     val age: String = "",
