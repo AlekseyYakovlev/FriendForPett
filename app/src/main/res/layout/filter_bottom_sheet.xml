@@ -5,42 +5,44 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bottom_sheet_shape"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+        <View
+            android:layout_width="150dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/item_text_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
+            android:layout_marginTop="48dp"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:overScrollMode="never"
             android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="42dp"
                 android:clipToPadding="false">
-
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="150dp"
-                    android:layout_height="8dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/item_text_shape"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toTopOf="parent" />
-
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="28dp" />
+                    app:layout_constraintGuide_begin="4dp" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_start"
@@ -58,70 +60,68 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx1"
+                    android:id="@+id/tv_filter_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
                     android:text="@string/pets_list_filter_bottom_sheet"
                     android:textColor="@color/white"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="4dp"
                     android:textSize="26sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
                     app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx2"
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_localin_dd_sheet"
+                    style="@style/Theme.FriendForPet.Filter"
                     android:layout_width="0dp"
+                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/rubik"
-                    android:text="Location"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:hint="@string/your_location"
+                    app:endIconTint="@null"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/mattesx1" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_filter_title"
+                    app:layout_dodgeInsetEdges="top">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx2"
-                    app:selectionRequired="true"
-                    app:singleSelection="true">
-
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
+                    <AutoCompleteTextView
+                        android:id="@+id/ac_dropdown"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Moskow"/>
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="none"                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.chip.ChipGroup>
+
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx22"
+                    android:id="@+id/tv_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Type"
+                    android:text="@string/whom_search_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup1" />
+                    app:layout_constraintTop_toBottomOf="@id/til_localin_dd_sheet" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup12"
+                    android:id="@+id/cg_type"
                     android:layout_width="0dp"
+                    android:tag="type"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx22"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_type"
                     app:selectionRequired="true"
                     app:singleSelection="true">
 
@@ -129,128 +129,128 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx223"
+                    android:id="@+id/tv_gender_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Gender"
+                    android:text="@string/sex_of_pet_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup12" />
+                    app:layout_constraintTop_toBottomOf="@id/cg_type" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup123"
+                    android:id="@+id/cg_gender_sheet"
                     android:layout_width="0dp"
+                    android:tag="gender"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx223"
-                    app:selectionRequired="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gender_sheet"
                     app:singleSelection="true">
 
                 </com.google.android.material.chip.ChipGroup>
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx2234"
+                    android:id="@+id/tv_color_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Color"
+                    android:text="@string/color_of_pet_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup123" />
+                    app:layout_constraintTop_toBottomOf="@id/cg_gender_sheet" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup4"
+                    android:id="@+id/cg_color_sheet"
                     android:layout_width="0dp"
+                    android:tag="color"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx2234"
-                    app:selectionRequired="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_color_sheet"
                     app:singleSelection="true">
 
                 </com.google.android.material.chip.ChipGroup>
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx4"
+                    android:id="@+id/tv_hair_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Hair"
+                    android:text="@string/hair_of_pet_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup4" />
+                    app:layout_constraintTop_toBottomOf="@id/cg_color_sheet" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup5"
+                    android:id="@+id/cg_hair_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx4"
-                    app:selectionRequired="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hair_sheet"
+                    android:tag="hair"
                     app:singleSelection="true">
 
                 </com.google.android.material.chip.ChipGroup>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx5"
+                    android:id="@+id/tv_personality_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Personality"
+                    android:text="@string/personality_of_pet_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup5" />
+                    app:layout_constraintTop_toBottomOf="@id/cg_hair_sheet" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup6"
+                    android:id="@+id/cg_personality_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:tag="personality"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx5"
-                    app:selectionRequired="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_personality_sheet"
                     app:singleSelection="true">
 
                 </com.google.android.material.chip.ChipGroup>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mattesx6"
+                    android:id="@+id/tv_size_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/rubik"
-                    android:text="Size"
+                    android:text="@string/size_of_pet_text"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroup6" />
+                    app:layout_constraintTop_toBottomOf="@id/cg_personality_sheet" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup7"
+                    android:id="@+id/cg_size_sheet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:tag="size"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toBottomOf="@+id/mattesx6"
-                    app:selectionRequired="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_size_sheet"
                     app:singleSelection="true">
 
                 </com.google.android.material.chip.ChipGroup>

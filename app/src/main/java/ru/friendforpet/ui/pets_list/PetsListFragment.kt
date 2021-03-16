@@ -40,12 +40,16 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
         }
 
         vb.filterExtendedFab.setOnClickListener {
-            navigator.navigateTo(Navigator.Destination.FILTER_FRAGMENT)
+            val bottom = FilterSheetFragment()
+            bottom.show(parentFragmentManager,FilterSheetFragment.TAG)
         }
 
         lifecycleScope.launchWhenStarted {
             Timber.tag("1234567").d("launchWhenStarted")
-            viewModel.getListFlow().collectLatest(::renderData)
+            viewModel.filterState.collectLatest {
+                viewModel.getListFlow(it).collectLatest(::renderData)
+            }
+
         }
     }
 

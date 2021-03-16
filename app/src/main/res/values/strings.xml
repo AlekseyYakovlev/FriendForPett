@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Friend For Pet</string>
-    <string name="city">Введите город</string>
-    <string name="your_location">Где вы находитесь</string>
-    <string name="whom_search_text">Кого вы ищете</string>
-    <string name="sex_of_pet_text">Пол питомца</string>
-    <string name="age_of_pet_text">Возраст питомца</string>
-    <string name="size_of_pet_text">Размер питомца</string>
-    <string name="personality_of_pet_text">Характер питомца</string>
-    <string name="hair_of_pet_text">Шерсть питомца</string>
-    <string name="color_of_pet_text">Окрас питомца</string>
+    <string name="city">город</string>
+    <string name="your_location">Местоположение</string>
+    <string name="whom_search_text">Тип</string>
+    <string name="sex_of_pet_text">Пол</string>
+    <string name="age_of_pet_text">Возраст</string>
+    <string name="size_of_pet_text">Размер</string>
+    <string name="personality_of_pet_text">Характер</string>
+    <string name="hair_of_pet_text">Шерсть</string>
+    <string name="color_of_pet_text">Окрас</string>
     <string name="clear">Очистить</string>
     <string-array name="cities">
         <item>Москва</item>

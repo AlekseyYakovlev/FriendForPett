@@ -26,7 +26,7 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
     private val vb by viewBinding(FragmentWelcomeScreenBinding::bind)
 
     private val filter = Filters.getMockInstance()
-    private val mockCityFilterList: List<String> = filter.location
+    private val mockCityFilterList: List<String> = filter.locations
 
     @Inject
     lateinit var navigator: Navigator

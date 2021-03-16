@@ -221,7 +221,7 @@ private fun PetsResponse.toPetsList(): List<PetEntity> =
 
 /**
  * Структура БД
- * @param location - "Moscow"
+ * @param locations - "Moscow"
  * @param animalType
  * 1 - Cat
  * 2 - Dog
@@ -234,7 +234,7 @@ private fun PetsResponse.toPetsList(): List<PetEntity> =
  * 1 - small
  * 2 - middle
  * 3 - Big
- * @param animalFurr
+ * @param animalHair
  * 1 - Long hair
  * 2 - short hair
  * @param color
@@ -250,12 +250,12 @@ private fun PetsResponse.toPetsList(): List<PetEntity> =
  * 2 - Active
  */
 data class Filters(
-    val location: List<String> = listOf("Moscow"),
+    val locations: List<String> = listOf("Moscow"),
     val animalType: Map<String, String> = mutableMapOf(),
     val age: List<String>? = listOf(),
     val gender: Map<String, String> = mutableMapOf(),
     val animalSize: Map<String, String> = mutableMapOf(),
-    val animalFurr: Map<String, String> = mutableMapOf(),
+    val animalHair: Map<String, String> = mutableMapOf(),
     val color: Map<String, String> = mutableMapOf(),
     val character: Map<String, String> = mutableMapOf()
 ) {
@@ -273,7 +273,7 @@ data class Filters(
         fun getMockInstance(age: List<String>? = null): Filters = Filters(
             animalType = getAnimalType(),
             age = age,
-            location = listOf(
+            locations = listOf(
                 "Москва",
                 "Санкт-Петербург",
                 "Казань",
@@ -281,7 +281,7 @@ data class Filters(
             ),
             gender = getGender(),
             animalSize = getAnimalSize(),
-            animalFurr = getAnimalFurr(),
+            animalHair = getAnimalFurr(),
             color = getColor(),
             character = getCharacter()
         )
@@ -293,21 +293,21 @@ data class Filters(
         )
 
         private fun getGender(): Map<String, String> = mapOf(
-            "1" to "Girl",
-            "2" to "Boy"
+            "1" to "Мальчик",
+            "2" to "Девочка"
         )
 
         private fun getAnimalSize(): Map<String, String> =
             mapOf(
-                "1" to "small",
-                "2" to "middle",
-                "3" to "Big"
+                "1" to "Маленький",
+                "2" to "Средний",
+                "3" to "Большой"
             )
 
         private fun getAnimalFurr(): Map<String, String> =
             mapOf(
-                "1" to "Long hair",
-                "2" to "short hair"
+                "1" to "Длинная",
+                "2" to "Короткая"
             )
 
         private fun getColor(): Map<String, String> =
@@ -324,8 +324,8 @@ data class Filters(
 
         private fun getCharacter(): Map<String, String> =
             mapOf(
-                "1" to "Calm",
-                "2" to "Active"
+                "1" to "Спокойный",
+                "2" to "Активный"
             )
     }
 

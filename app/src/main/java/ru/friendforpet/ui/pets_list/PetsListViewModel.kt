@@ -1,11 +1,17 @@
 package ru.friendforpet.ui.pets_list
 
+import android.content.Context
+import android.graphics.Color
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import ru.friendforpet.R
+import ru.friendforpet.data.repositoies.Filters
 import ru.friendforpet.data.repositoies.PetsListRepo
 import ru.friendforpet.model.Pet
 import timber.log.Timber
@@ -17,8 +23,11 @@ class PetsListViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-
     private val _filterState = MutableStateFlow(Filter())
+     val filterState: StateFlow<Filter> = _filterState
+
+
+    private val filters = Filters.getMockInstance()
 
     var isDogPicked = MutableStateFlow(false)
     var isCatPicked = MutableStateFlow(false)
@@ -31,12 +40,11 @@ class PetsListViewModel @Inject constructor(
         }
     }
 
-    fun getListFlow(): Flow<List<PetsItemData>> =
+    fun getListFlow(filter: Filter): Flow<List<PetsItemData>> =
         petsListRepo.petsListFlow
             .flowOn(Dispatchers.IO)
             .onEach { Timber.tag("123").d("New Value") }
             .map { list ->
-                val filter = _filterState.value
                 Timber.tag("123").d(filter.toString())
                 list.filter { pet ->
                     (filter.location.isEmpty() || filter.location == pet.location) &&
@@ -110,6 +118,105 @@ class PetsListViewModel @Inject constructor(
     fun cleanFilter() {
         _filterState.value = Filter()
     }
+    fun cleanFilterItem(field: String ) {
+        when (field) {
+            "location" -> {
+                _filterState.value = _filterState.value.copy(location = "")
+            }
+            "type" -> {
+                _filterState.value = _filterState.value.copy(type = "")
+            }
+            "gender" -> {
+                _filterState.value = _filterState.value.copy(gender = "")
+            }
+            "age" -> {
+                _filterState.value = _filterState.value.copy(minAge = "")
+            }
+            "minAge" -> {
+                _filterState.value = _filterState.value.copy(minAge = "")
+            }
+            "maxAge" -> {
+                _filterState.value = _filterState.value.copy(maxAge = "")
+            }
+            "size" -> {
+                _filterState.value = _filterState.value.copy(size = "")
+            }
+            "personality" -> {
+                _filterState.value = _filterState.value.copy(personality = "")
+            }
+            "hair" -> {
+                _filterState.value = _filterState.value.copy(hair = "")
+            }
+            "color" -> {
+                _filterState.value = _filterState.value.copy(color = "")
+            }
+        }
+    }
+
+    suspend fun locationList()  = flow {
+       emit( filters.locations)
+    }
+    suspend fun colorsChipGen(context: Context): Flow<Chip> = flow {
+        val cities = filters.color.values
+        cities.forEach { city ->
+            val temp = genChip(context, city)
+            temp.isChecked = temp.text == _filterState.value.color
+            emit(temp)
+        }
+    }
+    suspend fun typeChipGen(context: Context): Flow<Chip> = flow {
+        val cities = filters.animalType.values
+        cities.forEach { type ->
+            val temp = genChip(context, type)
+            temp.isChecked = temp.text == _filterState.value.type
+            emit(temp)
+        }
+    }
+    suspend fun genderChipGen(context: Context): Flow<Chip> = flow {
+        val list = filters.gender.values
+        list.forEach { item ->
+            val temp = genChip(context, item)
+            temp.isChecked = temp.text == _filterState.value.gender
+            emit(temp)
+        }
+    }
+    suspend fun hairChipGen(context: Context): Flow<Chip> = flow {
+        val list = filters.animalHair.values
+        list.forEach { item ->
+            val temp = genChip(context, item)
+            temp.isChecked = temp.text == _filterState.value.hair
+            emit(temp)
+        }
+    }
+    suspend fun sizeChipGen(context: Context): Flow<Chip> = flow {
+        val list = filters.animalSize.values
+        list.forEach { item ->
+            val temp = genChip(context, item)
+            temp.isChecked = temp.text == _filterState.value.size
+            emit(temp)
+        }
+    }
+    suspend fun characterChipGen(context: Context): Flow<Chip> = flow {
+        val list = filters.character.values
+        list.forEach { item ->
+            val temp = genChip(context, item)
+            temp.isChecked = temp.text == _filterState.value.personality
+            emit(temp)
+        }
+    }
+    private fun genChip(context: Context, value: String) = Chip(context).apply {
+        val res = context.resources
+        setTextColor(Color.WHITE)
+        chipStrokeWidth = res.getDimension(R.dimen.stroke)
+        chipStrokeColor =
+            ResourcesCompat.getColorStateList(res, R.color.stroke_tint, null)
+        setRippleColorResource(R.color.color_text)
+        chipBackgroundColor =
+            ResourcesCompat.getColorStateList(res, R.color.state_list, null)
+        isCheckable = true
+        text = value
+    }
+
 }
 
 data class Filter(

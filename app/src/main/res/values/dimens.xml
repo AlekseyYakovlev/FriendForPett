@@ -3,7 +3,7 @@
     <dimen name="textView_margin_top">15dp</dimen>
     <dimen name="spinner_margin_top">5dp</dimen>
 
-
+    <dimen name="stroke">2dp</dimen>
 
     <dimen name="card_stroke_pik">5dp</dimen>
 
