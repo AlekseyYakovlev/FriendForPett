@@ -1,37 +1,53 @@
 package ru.friendforpet.data.remote.resp
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.squareup.moshi.Json
 
 class PetsResponse : ArrayList<PetsResponse.PetsResponseItem>(){
-    @Serializable
     data class PetsResponseItem(
-        @SerialName("age")
+        @Json(name = "age")
         val age: Int = 0,
-        @SerialName("city_id")
+        @Json(name = "city_id")
         val cityId: Int = 0,
-        @SerialName("color")
+        @Json(name = "color")
         val color: Int = 0,
-        @SerialName("description")
+        @Json(name = "description")
         val description: String = "",
-        @SerialName("furr")
+        @Json(name = "furr")
         val furr: Int = 0,
-        @SerialName("gender")
+        @Json(name = "gender")
         val gender: Int = 0,
-        @SerialName("id")
+        @Json(name = "id")
         val id: Int = 0,
-        @SerialName("name")
+        @Json(name = "name")
         val name: String = "",
-        @SerialName("pet")
+        @Json(name = "pet")
         val pet: Int = 0,
-        @SerialName("pet_character")
+        @Json(name = "pet_character")
         val petCharacter: Int = 0,
-        @SerialName("photos")
-        val photos: List<String> = listOf(),
-        @SerialName("size")
+        @Json(name = "photos")
+        val photos: List<Photo> = listOf(),
+        @Json(name = "size")
         val size: Int = 0,
-        @SerialName("tags")
-        val tags: List<String> = listOf()
-    )
+        @Json(name = "tags")
+        val tags: List<Tag> = listOf()
+    ) {
+        data class Photo(
+            @Json(name = "id")
+            val id: Int = 0,
+            @Json(name = "pet_id")
+            val petId: Int = 0,
+            @Json(name = "photo_url")
+            val photoUrl: String = ""
+        )
+    
+        data class Tag(
+            @Json(name = "id")
+            val id: Int = 0,
+            @Json(name = "pet_id")
+            val petId: Int = 0,
+            @Json(name = "tag")
+            val tag: String = ""
+        )
+    }
 }

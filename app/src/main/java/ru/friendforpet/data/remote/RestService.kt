@@ -1,6 +1,7 @@
 package ru.friendforpet.data.remote
 
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.POST
 import ru.friendforpet.data.remote.resp.CityResponse
 import ru.friendforpet.data.remote.resp.PetsResponse
 
@@ -9,7 +10,7 @@ interface RestService {
     @POST("pets/get")
     suspend fun getPets(
 
-    ): PetsResponse
+    ): List<PetsResponse.PetsResponseItem>
 
     //https://documents.zenithapps.net/api/pets/city
     @GET("pets/city")

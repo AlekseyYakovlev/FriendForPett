@@ -1,18 +1,18 @@
 package ru.friendforpet.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import ru.friendforpet.BuildConfig
 import ru.friendforpet.data.remote.RestService
+import ru.friendforpet.data.remote.interceptors.ErrorStatusInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -33,35 +33,42 @@ object NetworkModule {
     ): RestService =
         retrofit.create(RestService::class.java)
 
-    @ExperimentalSerializationApi
     @Provides
     @Singleton
-    fun provideRetrofit(
+    fun providesRetrofit(
         client: OkHttpClient,
-        json: Json
+        moshi: Moshi
     ): Retrofit =
         Retrofit.Builder()
             .client(client)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
 
     @Provides
     @Singleton
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-
-        ): OkHttpClient =
+        errorStatusInterceptor: ErrorStatusInterceptor
+    ): OkHttpClient =
         OkHttpClient().newBuilder()
             .readTimeout(2, TimeUnit.SECONDS)  // socket timeout (GET)
             .writeTimeout(5, TimeUnit.SECONDS) // socket timeout (POST, PUT, etc.)
             .addInterceptor(httpLoggingInterceptor)    // log requests/results
+            .addInterceptor(errorStatusInterceptor)    // intercept network errors
             .build()
 
     @Provides
     @Singleton
-    fun provideJson() = Json {
-        ignoreUnknownKeys = true
-        coerceInputValues = true
-    }
+    fun provideErrorStatusInterceptor(
+        moshi: Moshi
+    ): ErrorStatusInterceptor =
+        ErrorStatusInterceptor(moshi)
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi =
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory()) // for reflection
+            .build()
 }

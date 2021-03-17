@@ -73,7 +73,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // Activity KTX
-    implementation("androidx.activity:activity-ktx:1.3.0-alpha03")
+    implementation("androidx.activity:activity-ktx:1.3.0-alpha04")
 
     // Fragment KTX
     implementation("androidx.fragment:fragment-ktx:1.3.1")
@@ -94,14 +94,21 @@ dependencies {
 
     // Retrofit + OkHttp
     val okHttpVersion = "5.0.0-alpha.2"
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    val retofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retofitVersion")
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+    //implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     //implementation ("com.squareup.okhttp3:mockwebserver:$okHttpVersion")
 
+    // Moshi
+    val moshiVersion = "1.11.0"
+    implementation ("com.squareup.retrofit2:converter-moshi:$retofitVersion")
+    implementation ("com.squareup.moshi:moshi-kotlin:$moshiVersion")
+    kapt ("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
+
     // Paging library
-    implementation("androidx.paging:paging-runtime:3.0.0-beta01")
+    implementation("androidx.paging:paging-runtime:3.0.0-beta02")
 
     // Dagger + Hilt
     val daggerVersion = "2.33"

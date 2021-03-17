@@ -3,28 +3,24 @@ package ru.friendforpet.data.repositoies
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
-import ru.friendforpet.data.db.AppDb
 import ru.friendforpet.data.db.daos.PetsDao
 import ru.friendforpet.data.db.entities.PetEntity
 import ru.friendforpet.data.remote.RestService
 import ru.friendforpet.data.remote.resp.PetsResponse
 import ru.friendforpet.model.Pet
-import timber.log.Timber
 import javax.inject.Inject
 
 class PetsListRepo @Inject constructor(
-    private val db: AppDb,
     private val petsDao: PetsDao,
     private val network: RestService,
 ) {
-
-    val petsListFlow: Flow<List<Pet>> = petsDao.getPetsFlow().map { list ->
-        list.map { it.toPet() }
-    }
+    val petsListFlow: Flow<List<Pet>> =
+        petsDao.getPetsFlow().map { list ->
+            list.map { it.toPet() }
+        }
 
     suspend fun insertInitialValues() {
-        petsDao.insertAll(provideDummyList())
-        //getPetsFromNet()
+        getPetsFromNet()
     }
 
     suspend fun updateIsLiked(petId: Int, isLiked: Boolean) {
@@ -34,125 +30,11 @@ class PetsListRepo @Inject constructor(
     fun getPet(petId: Int): Flow<Pet> =
         petsDao.getPetsByIdFlow(petId).filterNotNull().map { it.toPet() }
 
-    suspend fun getPetsFromNet() {
-        try {
-            val petsFromNet = network.getPets()
-            petsDao.insertAll(petsFromNet.toPetsList())
-        } catch (e: Exception) {
-            Timber.tag("123 PetsListRepo").e(e.message)
-        }
+    private suspend fun getPetsFromNet() {
+        val petsFromNet = network.getPets()
+        petsDao.insertAll(petsFromNet.map { it.toPetEntity() })
     }
 
-
-    private fun provideDummyList(): List<PetEntity> = listOf(
-        PetEntity(
-            1,
-            "Тризор",
-            "Мальчик",
-            5,
-            "Москва",
-            "Большая",
-            "Дружелюбная",
-            "Длинношерстная",
-            "Черно-рыжий",
-            "Нежный и воздушный артист балета Тризор ищет дом! \r\n\r\n" +
-                    "Мальчишки бывают самые разные: и хулиганистые, и гиперактивные, и хитренькие, но всё это – не про Тризора. Этот мальчик мягкий, как облачко, ласковый, как тёплый лучик солнца, нежный, как первый весенний цветок, добродушный и дружелюбный ребёнок.\r\n\r\n" +
-                    "Тризор – чемпион по обнимашкам и целовашкам, и сам обнимет, и других научит, как правильно делиться теплом и радостью. Почему же артист балета? У нашего Тризорчика с рождения ножки поставлены в красивую первую позицию. \r\n\r\n" +
-                    "Весь образ Тризора овеян этой неуловимо притягательной артистической романтикой: таинственная полуулыбка, выразительный взгляд, изящные движения ушек и хвостика… Мальчик будто парит, а не просто идёт по земле, с ним легко и комфортно гулять: он не тянет поводок, дружелюбен и спокоен с другими собаками. Громкие звуки, машины или что-либо ещё Тризора не пугают, он супер-контактный и абсолютно беспроблемный!\r\n\r\n" +
-                    "Тризора можно спокойно взять в семью, даже если раньше у Вас вообще не было опыта общения с собаками! .Поведение у мальчика на 5+, не нужна никакая корректировка, а если возникнет желание научить Тризорчика командам – наш танцующий красавец с радостью откроется чему-то новому.\r\n\r\n" +
-                    "Тризор дарит всем вокруг свет, радость и вдохновение, как настоящий артист, бескорыстно и от всей своей солнечной души.",
-            listOf(
-                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-            ),
-            "23.03.2021",
-            "https://www.friendforpet.ru/api/sites/default/files/2021-01/8tAR8nMAcLc.jpg",
-            false,
-            "Собака"
-        ),
-        PetEntity(
-            141984,
-            "Ника",
-            "Девочка",
-            2,
-            "Москва",
-            "Большая",
-            "Дружелюбная",
-            "Длинношерстная",
-            "Бело-рыжий",
-            "Та, кто делает пожар, не зажигая спичек.\n" +
-                    "⠀\n" +
-                    "Речь конечно о Злате, и о том как ей непросто найти своего человека, ведь она классная по всем фронтам и человек ей нужен такой же. А много ли таких?\n" +
-                    "⠀\n" +
-                    "Знаете..собаки это спасение и путь на волю, они учат нас жить и в них мы можем увидеть то, что не можем увидеть порой в людях. Они зажигают нам звёзды тайных вселенных, куда без них нам никогда не попасть.\n" +
-                    "⠀\n" +
-                    "Познакомься со Златой, вдруг вы ищете именно друг друга.\n" +
-                    "\n" +
-                    "Раменский район, МО, частная передержка.",
-            listOf(
-                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
-            ),
-            "23.03.2021",
-            "https://www.friendforpet.ru/api/sites/default/files/2021-01/_5adN7drnuw.jpg",
-            false,
-            "Собака"
-        ),
-        PetEntity(
-            141985,
-            "Мухтар",
-            "Мальчик",
-            3,
-            "Москва",
-            "Большая",
-            "Дружелюбная",
-            "Длинношерстная",
-            "Черно-рыжий",
-            "Отзывчивый, обучаемый, спокойный, ладит с детьми",
-            listOf(
-                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-            ),
-            "23.03.2021",
-            "https://www.friendforpet.ru/api/sites/default/files/2021-01/kIHxO7Wc2Hs.jpg",
-            false,
-            "Собака"
-        ),
-        PetEntity(
-            141986,
-            "Ника",
-            "Девочка",
-            2,
-            "Санкт-Петербург",
-            "Большая",
-            "Дружелюбная",
-            "Длинношерстная",
-            "Бело-рыжий",
-            "Отзывчивая, обучаемая, спокойная, ладит с детьми",
-            listOf(
-                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Сенбернар", "Спасатель"
-            ),
-            "23.03.2021",
-            "https://www.friendforpet.ru/api/sites/default/files/2021-01/s2lr9rjx8KI.jpg",
-            type = "Собака"
-        ),
-        PetEntity(
-            141987,
-            "Пусик",
-            "Мальчик",
-            3,
-            "Москва",
-            "Большая",
-            "Дружелюбная",
-            "Длинношерстная",
-            "Черно-рыжий",
-            "Отзывчивый, обучаемый, спокойный, ладит с детьми",
-            listOf(
-                "Дружелюбный", "Приучен к поводку", "Без агрессии", "Овчарка"
-            ),
-            "23.03.2021",
-            "https://www.friendforpet.ru/api/sites/default/files/2021-02/%D0%9F%D0%BE%D0%BF%D0%BE%D0%BD%D0%BA%D0%B0.jpg",
-            false,
-            "Кошка"
-        )
-    )
 
     private fun PetEntity.toPet() = Pet(
         _id = _id,
@@ -171,52 +53,46 @@ class PetsListRepo @Inject constructor(
         isLiked = isLiked,
         type = type,
     )
-
-
 }
 
-private fun PetsResponse.toPetsList(): List<PetEntity> =
+private fun PetsResponse.PetsResponseItem.toPetEntity(): PetEntity =
+    PetEntity(
+        _id = id,
+        name = name,
+        sex = if (gender == 1) "Девочка" else "Мальчик",
+        age = age,
+        location = when (cityId) {
+            1 -> "Санкт-Петербург"
+            2 -> "Казань"
+            3 -> "Краснодар"
+            else -> "Москва"
+        },
+        size = when (cityId) {
+            1 -> "Маленький"
+            2 -> "Средний"
+            3 -> "Большой"
+            else -> "Средний"
+        },
+        personality = if (petCharacter == 1) "Спокойный" else "Активный",
+        hair = if (furr == 1) "Длинная" else "Короткая",
+        color = when (color) {
+            1 -> "Черный"
+            2 -> "Коричневый"
+            3 -> "Бежевый"
+            4 -> "Рыжий"
+            5 -> "Песочный"
 
-     map {
-        PetEntity(
-            _id = it.id,
-            name = it.name,
-            sex = if (it.gender == 1) "Девочка" else "Мальчик",
-            age = it.age,
-            location = when (it.cityId) {
-                1 -> "Санкт-Петербург"
-                2 -> "Казань"
-                3 -> "Краснодар"
-                else -> "Москва"
-            },
-            size = when (it.cityId) {
-                1 -> "Маленький"
-                2 -> "Средний"
-                3 -> "Большой"
-                else -> "Средний"
-            },
-            personality = if (it.petCharacter == 1) "Спокойный" else "Активный",
-            hair = if (it.furr == 1) "Длинная" else "Короткая",
-            color = when (it.color) {
-                1 -> "Черный"
-                2 -> "Коричневый"
-                3 -> "Бежевый"
-                4 -> "Рыжий"
-                5 -> "Песочный"
-
-                7 -> "Белый"
-                8 -> "Дымчатый"
-                else -> "Черный"
-            },
-            description = it.description,
-            tags = emptyList(),
-            addedDate = "",
-            photo = it.photos.first(),
-            isLiked = false,
-            type = if (it.pet == 1) "Кошка" else "Собака",
-        )
-
-}
+            7 -> "Белый"
+            8 -> "Дымчатый"
+            else -> "Черный"
+        },
+        description = description,
+        tags = emptyList(), //FIXME
+        addedDate = "",
+        photo = photos.firstOrNull()?.photoUrl ?: "",
+        isLiked = false,
+        type = if (pet == 1) "Кошка" else "Собака",
+    )
 
 
 /**
@@ -328,9 +204,4 @@ data class Filters(
                 "2" to "Активный"
             )
     }
-
 }
-
-
-
-
