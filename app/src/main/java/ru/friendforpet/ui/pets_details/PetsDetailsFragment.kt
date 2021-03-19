@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import ru.friendforpet.Navigator
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetDetaisBinding
 import ru.friendforpet.model.Pet
 import ru.friendforpet.ui.adoption.AdoptionBottomSheet
 import ru.friendforpet.ui.utils.viewBinding
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class PetsDetailsFragment : Fragment(R.layout.fragment_pet_detais) {

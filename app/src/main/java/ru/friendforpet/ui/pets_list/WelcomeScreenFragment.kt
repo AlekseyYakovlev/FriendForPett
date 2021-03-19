@@ -117,7 +117,7 @@ class WelcomeScreenFragment : Fragment(R.layout.fragment_welcome_screen) {
 
 
     private val clickMenuListener =
-        AdapterView.OnItemClickListener { parent, view, position, id ->
+        AdapterView.OnItemClickListener { _, _, _, _ ->
             viewModel.updateFilter("location",  vb.acDropdown.text.toString()) // нет фильтра по городу в VM
         }
 }

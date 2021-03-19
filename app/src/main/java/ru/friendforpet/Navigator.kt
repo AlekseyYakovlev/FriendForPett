@@ -21,7 +21,10 @@ class Navigator @Inject constructor(
         }
     }
 
-    fun navigateTo(destination: Destination, arguments: Int? = null) {
+    fun navigateTo(
+        destination: Destination,
+        arguments: Int? = null,
+    ) {
         val args: Bundle? = arguments?.let { argValue ->
             Bundle().apply {
                 destination.argTag?.let { argTag -> putInt(argTag, argValue) }
@@ -31,7 +34,7 @@ class Navigator @Inject constructor(
 
         fragmentManager.commit {
             setReorderingAllowed(true)
-            setCustomAnimations(
+            if (destination.useCustomAnimations) setCustomAnimations(
                 R.anim.zoom_in,
                 R.anim.slide_out,
                 R.anim.slide_in,
@@ -51,6 +54,7 @@ class Navigator @Inject constructor(
         val fragmentClass: Class<out Fragment?>,
         val fragmentTag: String? = null,
         val argTag: String? = null,
+        val useCustomAnimations: Boolean = true
     ) {
         PETS_DETAILS_FRAGMENT(
             PetsDetailsFragment::class.java,
@@ -67,7 +71,8 @@ class Navigator @Inject constructor(
         ),
         FILTER_FRAGMENT(
             FilterFragment::class.java,
-            "FILTER_FRAGMENT"
+            "FILTER_FRAGMENT",
+            useCustomAnimations = false
         ),
     }
 }

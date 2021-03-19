@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import coil.metadata
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.friendforpet.Navigator
@@ -34,14 +33,29 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
     }
 
     private fun setupViews() {
+
+        vb.filterExtendedFab.setOnClickListener {
+
+            vb.icCirclePrimary.animate()
+                .scaleX(40f)
+                .scaleY(40f)
+                .setDuration(300L)
+                .start()
+
+            vb.icCircleSecondary.animate()
+                .scaleX(40f)
+                .scaleY(40f)
+                .alpha(1.0f)
+                .setDuration(300L)
+                .withEndAction {
+                    navigator.navigateTo(Navigator.Destination.FILTER_FRAGMENT)
+                }
+                .start()
+        }
+
         vb.rvPetsList.apply {
             adapter = petsListRvAdapter
             setHasFixedSize(true)
-        }
-
-        vb.filterExtendedFab.setOnClickListener {
-            val bottom = FilterSheetFragment()
-            bottom.show(parentFragmentManager,FilterSheetFragment.TAG)
         }
 
         lifecycleScope.launchWhenStarted {
@@ -65,7 +79,7 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
             },
             viewHolderBinder = { holder, itemData ->
                 with(holder) {
-                    ivPhoto.load(itemData.photo){
+                    ivPhoto.load(itemData.photo) {
                         placeholder(R.drawable.placeholder)
                     }
                     val ageStr = resources.getQuantityString(
@@ -73,7 +87,8 @@ class PetsListFragment : Fragment(R.layout.fragment_pets_list) {
                         itemData.age,
                         itemData.age
                     )
-                    val temp = "${itemData.name}: $ageStr ${System.lineSeparator()}${itemData.color}"
+                    val temp =
+                        "${itemData.name}: $ageStr ${System.lineSeparator()}${itemData.color}"
                     tvNameAge.text = temp
                     imageGender.setImageDrawable(
                         if (itemData.sex == "Мальчик") ResourcesCompat.getDrawable(
