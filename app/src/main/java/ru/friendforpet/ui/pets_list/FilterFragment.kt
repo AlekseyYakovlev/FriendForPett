@@ -2,10 +2,15 @@ package ru.friendforpet.ui.pets_list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import ru.friendforpet.R
 import ru.friendforpet.databinding.FragmentPetsListFilterBinding
 import ru.friendforpet.ui.utils.viewBinding
@@ -21,169 +26,93 @@ class FilterFragment : Fragment(R.layout.fragment_pets_list_filter) {
     }
 
     private fun setupViews() {
+        vb.btnApply.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
 
-        vb.btClean.setOnClickListener {
+        vb.btnClear.setOnClickListener {
             viewModel.cleanFilter()
-            setFilterValuesToDefault()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        setupFilterListeners()
+        val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1)
+        vb.acDropdown.setAdapter(adapter)
+        vb.acDropdown.threshold = 100
+        vb.acDropdown.setOnItemClickListener { _, _, _, _ ->
+            viewModel.updateFilter("location", vb.acDropdown.text.toString())
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.locationList().collectLatest {
+                adapter.addAll(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.colorsChipGen(requireContext()).collectLatest {
+                vb.cgColorSheet.addView(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.typeChipGen(requireContext()).collectLatest {
+                vb.cgType.addView(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.genderChipGen(requireContext()).collectLatest {
+                vb.cgGenderSheet.addView(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.sizeChipGen(requireContext()).collectLatest {
+                vb.cgSizeSheet.addView(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.characterChipGen(requireContext()).collectLatest {
+                vb.cgPersonalitySheet.addView(it)
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.hairChipGen(requireContext()).collectLatest {
+                vb.cgHairSheet.addView(it)
+            }
+        }
+
+        vb.cgColorSheet.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        vb.cgGenderSheet.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        vb.cgPersonalitySheet.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        vb.cgType.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        vb.cgHairSheet.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        vb.cgSizeSheet.setOnCheckedChangeListener { group, checkedId ->
+            tempUpd(group, checkedId)
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.filterState.collectLatest {
+                vb.acDropdown.setText(it.location, null)
+                vb.acDropdown.setTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
+            }
+
+        }
     }
 
-    private fun setFilterValuesToDefault() {
-        vb.spLocation.setSelection(0)
-        vb.spPetType.setSelection(0)
-        vb.spGender.setSelection(0)
-        vb.spAge.setSelection(0)
-        vb.spSize.setSelection(0)
-        vb.spPersonality.setSelection(0)
-        vb.spHair.setSelection(0)
-        vb.spPetType.setSelection(0)
-        vb.spColor.setSelection(0)
-    }
+    private fun tempUpd(group: ChipGroup, checkedId: Int) {
+        group.tag?.let {
+            it as String
+            if (checkedId != -1) {
+                val chip = group.findViewById<Chip>(checkedId)
+                viewModel.updateFilter(it, chip.text.toString())
 
-    private fun setupFilterListeners() {
-        vb.spLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("location", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spLocation.getItemAtPosition(position).toString()
-                viewModel.updateFilter("location", location)
-            }
-        }
-
-        vb.spPetType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("type", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spPetType.getItemAtPosition(position).toString()
-                viewModel.updateFilter("type", location)
-            }
-        }
-
-        vb.spGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("gender", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spGender.getItemAtPosition(position).toString()
-                viewModel.updateFilter("gender", location)
-            }
-        }
-
-        vb.spAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("age", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spAge.getItemAtPosition(position).toString()
-                viewModel.updateFilter("age", location)
-            }
-        }
-
-        vb.spSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("size", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spSize.getItemAtPosition(position).toString()
-                viewModel.updateFilter("size", location)
-            }
-        }
-
-        vb.spPersonality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("personality", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spPersonality.getItemAtPosition(position).toString()
-                viewModel.updateFilter("personality", location)
-            }
-        }
-
-        vb.spHair.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("hair", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spHair.getItemAtPosition(position).toString()
-                viewModel.updateFilter("hair", location)
-            }
-        }
-
-        vb.spPetType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("type", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spPetType.getItemAtPosition(position).toString()
-                viewModel.updateFilter("type", location)
-            }
-        }
-
-        vb.spColor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.updateFilter("color", "")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val location = vb.spColor.getItemAtPosition(position).toString()
-                viewModel.updateFilter("color", location)
+            } else {
+                viewModel.cleanFilterItem(it)
             }
         }
     }

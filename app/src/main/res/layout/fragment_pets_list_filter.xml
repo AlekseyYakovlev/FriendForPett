@@ -1,145 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C6AD89"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:background="@color/colorPrimaryDark"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/bt_clean"
-        android:layout_width="wrap_content"
-        android:layout_gravity="end"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="42dp">
 
-        <TextView
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="4dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="40dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="40dp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_filter_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="@string/clear" />
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/pets_list_filter_bottom_sheet"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
-        <ImageView
-            android:id="@+id/img_refresh"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/editclear" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/your_location" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_localin_dd_sheet"
+            style="@style/Theme.FriendForPet.Filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/your_location"
+            app:endIconTint="@null"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_title"
+            app:layout_dodgeInsetEdges="top">
 
-    <Spinner
-        android:id="@+id/sp_location"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/cities"
-        />
+            <AutoCompleteTextView
+                android:id="@+id/ac_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_pet_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/whom_search_text" />
 
-    <Spinner
-        android:id="@+id/sp_pet_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/whomSearch" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/whom_search_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/til_localin_dd_sheet" />
 
-    <TextView
-        android:id="@+id/tv_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/sex_of_pet_text" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="type"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-    <Spinner
-        android:id="@+id/sp_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/sexOfPet" />
+        </com.google.android.material.chip.ChipGroup>
 
-    <TextView
-        android:id="@+id/tv_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/age_of_pet_text" />
 
-    <Spinner
-        android:id="@+id/sp_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/agePet" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_gender_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/sex_of_pet_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/cg_type" />
 
-    <TextView
-        android:id="@+id/tv_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/size_of_pet_text" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_gender_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="gender"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender_sheet"
+            app:singleSelection="true">
 
-    <Spinner
-        android:id="@+id/sp_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/sizePet" />
+        </com.google.android.material.chip.ChipGroup>
 
-    <TextView
-        android:id="@+id/tv_personality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/personality_of_pet_text" />
 
-    <Spinner
-        android:id="@+id/sp_personality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/personalityPet" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_color_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/color_of_pet_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/cg_gender_sheet" />
 
-    <TextView
-        android:id="@+id/tv_hair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/hair_of_pet_text" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_color_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="color"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_color_sheet"
+            app:singleSelection="true">
 
-    <Spinner
-        android:id="@+id/sp_hair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/hairPet" />
+        </com.google.android.material.chip.ChipGroup>
 
-    <TextView
-        android:id="@+id/tv_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/textView_margin_top"
-        android:text="@string/color_of_pet_text" />
 
-    <Spinner
-        android:id="@+id/sp_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:entries="@array/colorPet" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_hair_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/hair_of_pet_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/cg_color_sheet" />
 
-</LinearLayout>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_hair_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="hair"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair_sheet"
+            app:singleSelection="true">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_personality_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/personality_of_pet_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/cg_hair_sheet" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_personality_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="personality"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_personality_sheet"
+            app:singleSelection="true">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_size_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/size_of_pet_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/cg_personality_sheet" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_size_sheet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="size"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_size_sheet"
+            app:singleSelection="true">
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minWidth="130dp"
+            android:minHeight="60dp"
+            android:text="@string/clear"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="25dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/cg_size_sheet" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minWidth="130dp"
+            android:minHeight="60dp"
+            android:text="@string/apply"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@+id/cg_size_sheet" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -153,6 +153,8 @@ class PetsListViewModel @Inject constructor(
         }
     }
 
+
+    //FIXME Move 158-219 to FilterFragment
     suspend fun locationList()  = flow {
        emit( filters.locations)
     }
@@ -160,7 +162,7 @@ class PetsListViewModel @Inject constructor(
         val cities = filters.color.values
         cities.forEach { city ->
             val temp = genChip(context, city)
-            temp.isChecked = temp.text == _filterState.value.color
+            temp.isChecked = temp.text == _filterState.value.location
             emit(temp)
         }
     }
