@@ -98,8 +98,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$retofitVersion")
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
-    //implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
-    //implementation ("com.squareup.okhttp3:mockwebserver:$okHttpVersion")
 
     // Moshi
     val moshiVersion = "1.11.0"
@@ -107,31 +105,20 @@ dependencies {
     implementation ("com.squareup.moshi:moshi-kotlin:$moshiVersion")
     kapt ("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
-    // Paging library
-    implementation("androidx.paging:paging-runtime:3.0.0-beta02")
-
     // Dagger + Hilt
     val daggerVersion = "2.33"
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
     implementation("com.google.dagger:hilt-android:${rootProject.extra["hiltVersion"]}")
     kapt("com.google.dagger:hilt-compiler:${rootProject.extra["hiltVersion"]}")
-    val androidxHilt = "1.0.0-alpha03"
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:$androidxHilt")
+    val androidxHilt = "1.0.0-beta01"
     kapt("androidx.hilt:hilt-compiler:$androidxHilt")
-    implementation("androidx.hilt:hilt-work:$androidxHilt")
 
     //Room
-    val roomVersion = "2.3.0-beta02"
+    val roomVersion = "2.3.0-beta03"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
-
-    // WorkManager
-    val workVersion = "2.5.0"
-    implementation("androidx.work:work-runtime-ktx:$workVersion")
-//    implementation("androidx.work:work-gcm:$workVersion") // optional - GCMNetworkManager support
-//    androidTestImplementation("androidx.work:work-testing:$workVersion") // optional - Test helpers
 
     //Log
     implementation("com.jakewharton.timber:timber:4.7.1")
